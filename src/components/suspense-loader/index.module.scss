@@ -1,0 +1,13 @@
+@import '../../styles/base';
+
+
+.suspenseWrapper{
+    position: fixed;
+    left: 0;
+    width: 100;
+    top: 0;
+    @include full-w-h;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
