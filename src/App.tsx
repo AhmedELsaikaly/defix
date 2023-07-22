@@ -1,12 +1,19 @@
 import { useRoutes } from 'react-router-dom';
 import routes from './router';
+
+import { TopNav, Navbar } from './components';
 import './styles/app.scss';
-import 'bootstrap/dist/css/bootstrap.css';
 
 function App() {
   const content = useRoutes(routes);
 
-  return <div className='App'>{content}</div>;
+  return (
+    <div className='App'>
+      <TopNav />
+      <Navbar />
+      {content}
+    </div>
+  );
 }
 
 export default App;

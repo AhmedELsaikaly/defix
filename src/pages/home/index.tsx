@@ -1,9 +1,10 @@
 import { Button } from 'reactstrap';
+import { Header } from '../../components';
 
 const Home = () => {
   return (
     <div>
-      <Button color='primary'>Click Me</Button>
+      <Header />
     </div>
   );
 };

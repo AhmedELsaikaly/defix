@@ -1,0 +1,49 @@
+@import '../../styles/base';
+.navbar {
+  padding: 20px 0;
+  background-color: $primary-color;
+}
+.linksWrapper {
+  display: flex;
+  li {
+    &:not(:last-child) {
+      padding-inline-end: 50px;
+    }
+  }
+  a {
+    display: inline-block;
+    color: $white-color;
+    font-size: var(--nav-links-font-size);
+    position: relative;
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      inset-inline-start: 0;
+      width: 0;
+      border-top: 2px solid $secondary-color;
+      transition: width 0.3s ease-in-out;
+    }
+    &.active,
+    &:hover {
+      &:after {
+        width: 100%;
+      }
+    }
+  }
+}
+.navbarWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ctaWrap {
+  display: block;
+}
+
+.navbarBrand {
+  width: 130px;
+  height: 40px;
+  overflow: hidden;
+}
