@@ -1,0 +1,54 @@
+@import '../../styles/base';
+.about-section {
+}
+
+.servicesSection,
+.projectsSection {
+  .subtext {
+    text-align: center;
+    color: $primary-color;
+    font-size: var(--h4-font-size);
+  }
+}
+
+.moreBtnWrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  button {
+    padding: 10px 60px;
+  }
+}
+
+.statisticsWrapper {
+  border-radius: 40px;
+  padding: 50px 150px;
+  background-image: linear-gradient(to right, #013147, #0498ff);
+  .row {
+    justify-content: center;
+  }
+  .statisticsItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 13px;
+    .statisticsItemImage {
+      width: 74px;
+      height: 74px;
+      flex: 0 0 74px;
+      border-radius: 22px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $white-color;
+    }
+    h4,
+    p {
+      color: $white-color;
+    }
+    p {
+      margin-top: 10px;
+      font-weight: $normal;
+    }
+  }
+}

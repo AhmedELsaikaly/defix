@@ -2,13 +2,13 @@ import { Link } from 'react-router-dom';
 import { ROUTES } from './../../constants/routes';
 import { importImageByProcessEnv } from '../../utils';
 import Button from '../button';
-import { Container } from 'reactstrap';
 import styles from './index.module.scss';
+import { Container } from 'reactstrap';
 
 const Navbar = () => {
   return (
     <nav className={styles.navbar}>
-      <Container fluid={false}>
+      <Container>
         <div className={styles.navbarWrapper}>
           <Link to={ROUTES.home} className={styles.navbarBrand}>
             <img

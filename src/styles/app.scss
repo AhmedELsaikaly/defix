@@ -1,10 +1,11 @@
 @import './base';
 :root {
   --theme-font: 'DIN Next LT W23';
-  --h1-font-size: 40px;
-  --h2-font-size: 30px;
-  --h3-font-size: 25px;
-  --h4-font-size: 20px;
+  --h1-font-size: 45px;
+  --h2-font-size: 35px;
+  --h3-font-size: 30px;
+  --h4-font-size: 25px;
+  --h5-font-size: 20px;
   --text-font-size: 16px;
   --nav-links-font-size: 18px;
   --btn-font-size: 18px;
@@ -97,4 +98,10 @@ a {
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.bg-cover {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }

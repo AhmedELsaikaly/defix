@@ -1,6 +1,6 @@
 import { Container } from 'reactstrap';
-import styles from './index.module.scss';
 import { MailIcon, WhatsappIcon } from '../icons';
+import styles from './index.module.scss';
 
 const TopNav = () => {
   return (
