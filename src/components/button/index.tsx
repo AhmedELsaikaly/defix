@@ -6,6 +6,7 @@ interface ButtonCompProps {
   fullRadius?: boolean;
   type: 'primary' | 'outlined' | 'outlined-white';
   onClick?: () => void;
+  whiteText?: boolean;
 }
 
 const ButtonComp = ({
@@ -13,6 +14,7 @@ const ButtonComp = ({
   type,
   children,
   onClick,
+  whiteText = false,
 }: PropsWithChildren<ButtonCompProps>) => {
   return (
     <button
@@ -22,6 +24,7 @@ const ButtonComp = ({
         [styles.primary]: type === 'primary',
         [styles.outlined]: type === 'outlined',
         [styles.outlinedWhite]: type === 'outlined-white',
+        [styles.whiteText]: whiteText,
       })}
     >
       <span>{children}</span>

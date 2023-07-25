@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 import AOS from 'aos';
 import { useRoutes } from 'react-router-dom';
 import routes from './router';
-
-import { TopNav, Navbar } from './components';
+import { TopNav, Navbar, Footer } from './components';
 import './styles/app.scss';
+import 'swiper/css/pagination';
 
 function App() {
   const content = useRoutes(routes);
@@ -19,6 +19,7 @@ function App() {
       <TopNav />
       <Navbar />
       {content}
+      <Footer />
     </div>
   );
 }

@@ -66,7 +66,7 @@ export const Services = () => {
           data-aos='fade-up'
           data-aos-delay='200'
         >
-          <Button type='primary' fullRadius>
+          <Button whiteText type='primary' fullRadius>
             المزيد
           </Button>
         </div>

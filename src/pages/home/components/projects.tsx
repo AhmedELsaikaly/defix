@@ -1,41 +1,25 @@
 import {
   Button,
+  ProjectsImages,
   SectionsTitle,
   SectionsWrapper,
   Tabs,
-  WebsiteCard,
 } from '../../../components';
-import { Col, Container, Row } from 'reactstrap';
+import { Container } from 'reactstrap';
 import styles from '../index.module.scss';
+import { importImageByProcessEnv } from '../../../utils';
 
-const ProjectsImages = () => {
+const ProjectsImagesComp = () => {
   return (
-    <Row>
-      <Col lg='4'>
-        <WebsiteCard
-          iconHaveBg
-          iconLink='https://deffix.alialqrinawi.me/uploads/Sliders/wdztgAiKVZM21690036183_.jpg'
-          title='التخطيط والتصميم'
-          text='تبدأ عملية البناء بتخطيط شامل للمشروع وتصميم مفصل يأخذ في الاعتبار المتطلبات الوظيفية والتصميمية للمبنى. يتضمن ذلك دراسة الموقع وتحديد المساحة والمواصفات المطلوبة وتحليل الاحتياجات المستقبلية'
-        />
-      </Col>
-      <Col lg='4'>
-        <WebsiteCard
-          iconHaveBg
-          iconLink='https://deffix.alialqrinawi.me/uploads/Sliders/wdztgAiKVZM21690036183_.jpg'
-          title='التخطيط والتصميم'
-          text='تبدأ عملية البناء بتخطيط شامل للمشروع وتصميم مفصل يأخذ في الاعتبار المتطلبات الوظيفية والتصميمية للمبنى. يتضمن ذلك دراسة الموقع وتحديد المساحة والمواصفات المطلوبة وتحليل الاحتياجات المستقبلية'
-        />
-      </Col>
-      <Col lg='4'>
-        <WebsiteCard
-          iconHaveBg
-          iconLink='https://deffix.alialqrinawi.me/uploads/Sliders/wdztgAiKVZM21690036183_.jpg'
-          title='التخطيط والتصميم'
-          text='تبدأ عملية البناء بتخطيط شامل للمشروع وتصميم مفصل يأخذ في الاعتبار المتطلبات الوظيفية والتصميمية للمبنى. يتضمن ذلك دراسة الموقع وتحديد المساحة والمواصفات المطلوبة وتحليل الاحتياجات المستقبلية'
-        />
-      </Col>
-    </Row>
+    <ProjectsImages
+      images={[
+        importImageByProcessEnv('1.png'),
+        importImageByProcessEnv('2.png'),
+        importImageByProcessEnv('3.png'),
+        importImageByProcessEnv('4.png'),
+        importImageByProcessEnv('5.png'),
+      ]}
+    />
   );
 };
 
@@ -55,8 +39,8 @@ export const ProjectsSection = () => {
         >
           <Tabs
             tabs={[
-              { name: 'الإنشاءات', content: <ProjectsImages /> },
-              { name: 'الصيانة', content: <ProjectsImages /> },
+              { name: 'الإنشاءات', content: <ProjectsImagesComp /> },
+              { name: 'الصيانة', content: <ProjectsImagesComp /> },
             ]}
           />
         </div>
@@ -66,7 +50,7 @@ export const ProjectsSection = () => {
           data-aos='fade-up'
           data-aos-delay='200'
         >
-          <Button type='primary' fullRadius>
+          <Button whiteText type='primary' fullRadius>
             المزيد
           </Button>
         </div>

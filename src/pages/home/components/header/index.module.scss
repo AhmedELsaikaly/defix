@@ -1,4 +1,4 @@
-@import '../../styles/base';
+@import '../../../../styles/base';
 
 .headerItem {
   position: relative;
@@ -13,13 +13,14 @@
 }
 
 .headerItemContent {
+  // direction: rtl;
   position: relative;
   z-index: 9;
   min-height: calc(100vh - 152px);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 20px 0;
+  padding: 40px 0;
   h1 {
     color: $secondary-color;
     margin-bottom: 20px;

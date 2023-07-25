@@ -1,13 +1,13 @@
-import { importImageByProcessEnv } from '../../utils';
 import { Container } from 'reactstrap';
-import Button from '../button';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectFade, Autoplay } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import styles from './index.module.scss';
+import { importImageByProcessEnv } from '../../../../utils';
+import { Button } from '../../../../components';
 
-const Header = () => {
+export const Header = () => {
   return (
     <header className={styles.header}>
       <Swiper
@@ -106,5 +106,3 @@ const Header = () => {
     </header>
   );
 };
-
-export default Header;

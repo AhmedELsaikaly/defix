@@ -1,11 +1,12 @@
-import { Header } from '../../components';
 import {
   Services,
   AboutSection,
   Statistics,
   ProjectsSection,
+  Clients,
+  Header,
+  Testimonials,
 } from './components';
-import styles from './index.module.scss';
 
 const Home = () => {
   return (
@@ -15,6 +16,8 @@ const Home = () => {
       <Services />
       <Statistics />
       <ProjectsSection />
+      <Clients />
+      <Testimonials />
     </div>
   );
 };
