@@ -9,6 +9,7 @@ import ChangeLanguage from '../change-language';
 
 interface NavLinksListProps {
   isSideMenu?: boolean;
+  isChangeLangPrimary?: boolean;
   onMenuButtonClick?: () => void;
   setSideMenuOpen?: (opened: boolean) => void;
 }
@@ -25,6 +26,7 @@ export const NavLinksList = ({
   isSideMenu = false,
   onMenuButtonClick,
   setSideMenuOpen,
+  isChangeLangPrimary = false,
 }: NavLinksListProps) => {
   const closeSideMenu = () => {
     if (setSideMenuOpen) {
@@ -62,15 +64,10 @@ export const NavLinksList = ({
           src={importImageByProcessEnv('logo.png')}
         />
       </Link>
-      {!isSideMenu && (
-        <button className={styles.menuToggler} onClick={onMenuButtonClick}>
-          <Menu />
-        </button>
-      )}
 
       <ul className={styles.linksWrapper}>
         {navLinks.map(navLinkItem => (
-          <li>
+          <li key={navLinkItem.targetSection}>
             <Link
               onClick={e => handleNavLinkClick(e, navLinkItem.targetSection)}
               to={`#${navLinkItem.targetSection}`}
@@ -86,7 +83,13 @@ export const NavLinksList = ({
         ))}
       </ul>
       <div className={styles.changeLangCtaWrap}>
-        <ChangeLanguage />
+        {!isSideMenu && <ChangeLanguage isPrimary={isChangeLangPrimary} />}
+        {!isSideMenu && (
+          <button className={styles.menuToggler} onClick={onMenuButtonClick}>
+            <Menu />
+          </button>
+        )}
+
         <Link to='#' className={styles.ctaWrap}>
           <Button onClick={closeSideMenu} type='outlined-white' fullRadius>
             تواصل معنا

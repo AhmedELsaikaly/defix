@@ -1,16 +1,30 @@
-import {
-  Button,
-  SectionsTitle,
-  SectionsWrapper,
-  Tabs,
-  WebsiteCard,
-} from '../../../components';
 import { Col, Container, Row } from 'reactstrap';
-import styles from '../index.module.scss';
+import WebsiteCard from '../website-card';
+import SectionsWrapper from '../sections-wrapper';
+import SectionsTitle from '../sections-title';
+import Tabs from '../tabs';
+import Button from '../button';
+import styles from './index.module.scss';
 
 const ServiceCards = () => {
   return (
-    <Row className='gy-4'>
+    <Row className='gy-4 justify-content-center'>
+      <Col xl='4' lg='6'>
+        <WebsiteCard
+          iconHaveBg
+          iconLink='https://deffix.alialqrinawi.me/uploads/Sliders/wdztgAiKVZM21690036183_.jpg'
+          title='التخطيط والتصميم'
+          text='تبدأ عملية البناء بتخطيط شامل للمشروع وتصميم مفصل يأخذ في الاعتبار المتطلبات الوظيفية والتصميمية للمبنى. يتضمن ذلك دراسة الموقع وتحديد المساحة والمواصفات المطلوبة وتحليل الاحتياجات المستقبلية'
+        />
+      </Col>
+      <Col xl='4' lg='6'>
+        <WebsiteCard
+          iconHaveBg
+          iconLink='https://deffix.alialqrinawi.me/uploads/Sliders/wdztgAiKVZM21690036183_.jpg'
+          title='التخطيط والتصميم'
+          text='تبدأ عملية البناء بتخطيط شامل للمشروع وتصميم مفصل يأخذ في الاعتبار المتطلبات الوظيفية والتصميمية للمبنى. يتضمن ذلك دراسة الموقع وتحديد المساحة والمواصفات المطلوبة وتحليل الاحتياجات المستقبلية'
+        />
+      </Col>
       <Col xl='4' lg='6'>
         <WebsiteCard
           iconHaveBg
@@ -39,7 +53,7 @@ const ServiceCards = () => {
   );
 };
 
-export const Services = () => {
+const Services = () => {
   return (
     <SectionsWrapper id='services' className={styles.servicesSection}>
       <Container>
@@ -74,3 +88,5 @@ export const Services = () => {
     </SectionsWrapper>
   );
 };
+
+export default Services;

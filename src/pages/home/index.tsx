@@ -1,8 +1,7 @@
+import { ProjectsSection, Services } from '../../components';
 import {
-  Services,
   AboutSection,
   Statistics,
-  ProjectsSection,
   Clients,
   Header,
   Testimonials,

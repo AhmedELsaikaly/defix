@@ -1,13 +1,13 @@
-import {
-  Button,
-  ProjectsImages,
-  SectionsTitle,
-  SectionsWrapper,
-  Tabs,
-} from '../../../components';
 import { Container } from 'reactstrap';
-import styles from '../index.module.scss';
-import { importImageByProcessEnv } from '../../../utils';
+import ProjectsImages from '../projects-images';
+import { importImageByProcessEnv } from '../../utils';
+import SectionsWrapper from '../sections-wrapper';
+import SectionsTitle from '../sections-title';
+import Tabs from '../tabs';
+import Button from '../button';
+import { useNavigate } from 'react-router-dom';
+import { ROUTES } from '../../constants';
+import styles from './index.module.scss';
 
 const ProjectsImagesComp = () => {
   return (
@@ -23,7 +23,12 @@ const ProjectsImagesComp = () => {
   );
 };
 
-export const ProjectsSection = () => {
+interface ProjectsSectionProps {
+  withMoreBtn?: boolean;
+}
+
+const ProjectsSection = ({ withMoreBtn = true }: ProjectsSectionProps) => {
+  const navigate = useNavigate();
   return (
     <SectionsWrapper id='projects' className={styles.projectsSection}>
       <Container>
@@ -44,17 +49,24 @@ export const ProjectsSection = () => {
             ]}
           />
         </div>
-
-        <div
-          className={styles.moreBtnWrap}
-          data-aos='fade-up'
-          data-aos-delay='200'
-        >
-          <Button whiteText type='primary' fullRadius>
-            المزيد
-          </Button>
-        </div>
+        {withMoreBtn && (
+          <div
+            className={styles.moreBtnWrap}
+            data-aos='fade-up'
+            data-aos-delay='200'
+          >
+            <Button
+              onClick={() => navigate(ROUTES.projects)}
+              whiteText
+              type='primary'
+              fullRadius
+            >
+              المزيد
+            </Button>
+          </div>
+        )}
       </Container>
     </SectionsWrapper>
   );
 };
+export default ProjectsSection;

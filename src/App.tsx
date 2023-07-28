@@ -1,16 +1,17 @@
 import { useEffect } from 'react';
 import AOS from 'aos';
-import { useRoutes } from 'react-router-dom';
+import { useMatch, useRoutes } from 'react-router-dom';
 import routes from './router';
 import { TopNav, Navbar, Footer, PagesWrapper } from './components';
 import { useCallApi, useLang } from './hooks';
+import { ROUTES } from './constants';
 import './styles/app.scss';
 import 'swiper/css/pagination';
 
 function App() {
   const content = useRoutes(routes);
+  const match = useMatch(ROUTES.home);
   const currentLanguage = useLang();
-  console.log(currentLanguage, 'currentLanguagecurrentLanguage');
   useEffect(() => {
     const direction = currentLanguage === 'en' ? 'ltr' : 'rtl';
     document.body.dir = direction;
@@ -24,14 +25,14 @@ function App() {
     });
   }, []);
 
-  const { data, isLoading } = useCallApi('/header');
-  const { data: footerData, isLoading: footerLoading } = useCallApi('/footer');
-
+  // const { data, isLoading } = useCallApi('/header');
+  // const { data: footerData, isLoading: footerLoading } = useCallApi('/footer');
+  console.log(!match, 'matchmatch');
   return (
     <div className='App'>
-      <PagesWrapper loading={isLoading || footerLoading}>
+      <PagesWrapper loading={false}>
         <TopNav />
-        <Navbar />
+        <Navbar isWhiteBg={!match} />
         {content}
         <Footer />
       </PagesWrapper>

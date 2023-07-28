@@ -1,24 +1,4 @@
 @import '../../styles/base';
-.about-section {
-}
-
-.servicesSection,
-.projectsSection {
-  .subtext {
-    text-align: center;
-    color: $primary-color;
-    font-size: var(--h4-font-size);
-  }
-}
-
-.moreBtnWrap {
-  display: flex;
-  justify-content: center;
-  margin-top: 40px;
-  button {
-    padding: 10px 60px;
-  }
-}
 
 .statisticsWrapper {
   border-radius: 40px;

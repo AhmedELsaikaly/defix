@@ -12,5 +12,7 @@ export { default as ProjectsImages } from './projects-images';
 export { default as PagesWrapper } from './page-wrapper';
 export { default as ChangeLanguage } from './change-language';
 export { default as BiLang } from './bi-lang-comp';
+export { default as ProjectsSection } from './project-section';
+export { default as Services } from './services-section';
 
 export * from './icons';

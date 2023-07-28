@@ -3,10 +3,10 @@ import SuspenseLoader from '../suspense-loader';
 
 interface PageWrapperProps {
   children: ReactNode | ReactNode[];
-  loading: boolean;
+  loading?: boolean;
 }
 
-const PageWrapper = ({ children, loading }: PageWrapperProps) => {
+const PageWrapper = ({ children, loading = false }: PageWrapperProps) => {
   return (
     <div style={{ minHeight: '100vh' }}>
       {loading ? <SuspenseLoader /> : children}

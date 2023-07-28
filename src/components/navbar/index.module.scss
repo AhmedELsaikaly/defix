@@ -2,6 +2,7 @@
 .navbar.navbar {
   padding: 20px 0;
   background-color: $primary-color;
+  transition: all 0.3s ease-in-out;
   @include md {
     padding: 15px 0;
   }
@@ -10,6 +11,13 @@
     ul {
       display: none;
     }
+  }
+  &.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
   }
 }
 .linksWrapper {
@@ -90,7 +98,7 @@
     width: 130px;
     height: 40px;
   }
-  .ctaWrap {
+  .changeLangCtaWrap {
     margin-top: auto;
   }
   ul {
@@ -172,4 +180,33 @@
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.whiteNav.whiteNav {
+  background-color: $white-color;
+  filter: drop-shadow(0px 3px 10px rgba(0, 0, 0, 0.06));
+  .linksWrapper {
+    a {
+      color: $primary-color;
+      &:after {
+        border-color: $primary-color;
+      }
+    }
+  }
+  .ctaWrap {
+    button {
+      transition: all 0.3s ease-in-out;
+      background-image: linear-gradient(to right, $primary-color, #0498ff);
+      &:hover {
+        background-image: linear-gradient(to right, #826b10, $secondary-color);
+        color: $white-color;
+      }
+    }
+  }
+  .menuToggler {
+    svg {
+      fill: $primary-color;
+      stroke: $primary-color;
+    }
+  }
 }
