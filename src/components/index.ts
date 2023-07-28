@@ -11,4 +11,6 @@ export { default as Counter } from './counter';
 export { default as ProjectsImages } from './projects-images';
 export { default as PagesWrapper } from './page-wrapper';
 export { default as ChangeLanguage } from './change-language';
+export { default as BiLang } from './bi-lang-comp';
+
 export * from './icons';
