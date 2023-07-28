@@ -9,50 +9,75 @@ const ProjectsImages = ({ images }: ProjectsImagesProps) => {
   return (
     <div>
       <Row className='gy-4'>
-        <Col lg='8'>
+        <Col lg='8' md='6'>
           <div
             className={styles.imgWrapper}
             data-aos='zoom-in'
             data-aos-delay='150'
           >
-            <img className='img-full' src={images[0]} alt='المشروع الأول' />
+            <img
+              loading='lazy'
+              className='img-full img-bg'
+              src={images[0]}
+              alt='المشروع الأول'
+            />
           </div>
         </Col>
-        <Col lg='4'>
+        <Col lg='4' md='6'>
           <div
             data-aos='zoom-in'
             data-aos-delay='150'
             className={styles.imgWrapper}
           >
-            <img className='img-full' src={images[1]} alt='المشروع الأول' />
+            <img
+              loading='lazy'
+              className='img-full img-bg'
+              src={images[1]}
+              alt='المشروع الأول'
+            />
           </div>
         </Col>
         <Col lg='8'>
-          <Row>
-            <Col lg='7'>
+          <Row className='gy-4'>
+            <Col lg='7' md='6'>
               <div
                 data-aos='zoom-in'
                 data-aos-delay='150'
                 className={styles.imgWrapper2}
               >
-                <img className='img-full' src={images[2]} alt='المشروع الأول' />
+                <img
+                  loading='lazy'
+                  className='img-full img-bg'
+                  src={images[2]}
+                  alt='المشروع الأول'
+                />
               </div>
             </Col>
-            <Col data-aos='zoom-in' data-aos-delay='150' lg='5'>
+            <Col lg='5' md='6' data-aos='zoom-in' data-aos-delay='150'>
               <div className={styles.imgWrapper2}>
-                <img className='img-full' src={images[3]} alt='المشروع الأول' />
+                <img
+                  loading='lazy'
+                  className='img-full img-bg'
+                  src={images[3]}
+                  alt='المشروع الأول'
+                />
               </div>
             </Col>
           </Row>
         </Col>
 
-        <Col lg='4'>
+        <Col lg='4' md='6'>
           <div
             data-aos='zoom-in'
             data-aos-delay='150'
             className={styles.imgWrapper2}
           >
-            <img className='img-full' src={images[4]} alt='المشروع الأول' />
+            <img
+              loading='lazy'
+              className='img-full img-bg'
+              src={images[4]}
+              alt='المشروع الأول'
+            />
           </div>
         </Col>
       </Row>

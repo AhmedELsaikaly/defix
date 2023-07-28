@@ -14,7 +14,10 @@ const Navbar = () => {
           <NavLinksList onMenuButtonClick={() => setIsSideMenuOpened(true)} />
         </Container>
       </nav>
-      <SideMenu opened={isSideMenuOpened} />
+      <SideMenu
+        opened={isSideMenuOpened}
+        setSideMenuOpen={(status: boolean) => setIsSideMenuOpened(status)}
+      />
       {isSideMenuOpened && (
         <Overlay onClick={() => setIsSideMenuOpened(false)} />
       )}

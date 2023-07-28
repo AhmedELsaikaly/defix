@@ -23,7 +23,13 @@ const WebsiteCard = ({
     >
       <div className={styles.cardIconTitleWrap}>
         <div className={`${styles.icon} ${iconHaveBg ? styles.withBg : ''}`}>
-          <img className='img-full' src={iconLink} title={title} alt={title} />
+          <img
+            loading='lazy'
+            className='img-full img-bg'
+            src={iconLink}
+            title={title}
+            alt={title}
+          />
         </div>
         <h5>{title}</h5>
       </div>

@@ -10,8 +10,8 @@ import styles from '../index.module.scss';
 
 const ServiceCards = () => {
   return (
-    <Row>
-      <Col lg='4'>
+    <Row className='gy-4'>
+      <Col xl='4' lg='6'>
         <WebsiteCard
           iconHaveBg
           iconLink='https://deffix.alialqrinawi.me/uploads/Sliders/wdztgAiKVZM21690036183_.jpg'
@@ -19,7 +19,7 @@ const ServiceCards = () => {
           text='تبدأ عملية البناء بتخطيط شامل للمشروع وتصميم مفصل يأخذ في الاعتبار المتطلبات الوظيفية والتصميمية للمبنى. يتضمن ذلك دراسة الموقع وتحديد المساحة والمواصفات المطلوبة وتحليل الاحتياجات المستقبلية'
         />
       </Col>
-      <Col lg='4'>
+      <Col xl='4' lg='6'>
         <WebsiteCard
           iconHaveBg
           iconLink='https://deffix.alialqrinawi.me/uploads/Sliders/wdztgAiKVZM21690036183_.jpg'
@@ -27,7 +27,7 @@ const ServiceCards = () => {
           text='تبدأ عملية البناء بتخطيط شامل للمشروع وتصميم مفصل يأخذ في الاعتبار المتطلبات الوظيفية والتصميمية للمبنى. يتضمن ذلك دراسة الموقع وتحديد المساحة والمواصفات المطلوبة وتحليل الاحتياجات المستقبلية'
         />
       </Col>
-      <Col lg='4'>
+      <Col xl='4' lg='6'>
         <WebsiteCard
           iconHaveBg
           iconLink='https://deffix.alialqrinawi.me/uploads/Sliders/wdztgAiKVZM21690036183_.jpg'
@@ -41,7 +41,7 @@ const ServiceCards = () => {
 
 export const Services = () => {
   return (
-    <SectionsWrapper className={styles.servicesSection}>
+    <SectionsWrapper id='services' className={styles.servicesSection}>
       <Container>
         <SectionsTitle text='خدماتنا' />
         <p data-aos='fade-up' data-aos-delay='200' className={styles.subtext}>

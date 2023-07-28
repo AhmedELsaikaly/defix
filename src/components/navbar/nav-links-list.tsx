@@ -1,25 +1,60 @@
+import { MouseEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../constants';
 import { importImageByProcessEnv } from '../../utils';
 import Button from '../button';
 import styles from './index.module.scss';
+import { Menu } from '../icons';
+import ChangeLanguage from '../change-language';
 
 interface NavLinksListProps {
   isSideMenu?: boolean;
   onMenuButtonClick?: () => void;
+  setSideMenuOpen?: (opened: boolean) => void;
 }
+
+const navLinks = [
+  { nameAr: 'الرئيسية', nameEn: 'home', targetSection: 'home' },
+  { nameAr: 'من نحن', nameEn: 'About us', targetSection: 'about' },
+  { nameAr: 'خدماتنا', nameEn: 'Services', targetSection: 'services' },
+  { nameAr: 'إنجازاتنا', nameEn: 'home', targetSection: 'projects' },
+  { nameAr: 'عملاؤنا', nameEn: 'home', targetSection: 'clients' },
+];
 
 export const NavLinksList = ({
   isSideMenu = false,
   onMenuButtonClick,
+  setSideMenuOpen,
 }: NavLinksListProps) => {
+  const closeSideMenu = () => {
+    if (setSideMenuOpen) {
+      setSideMenuOpen(false);
+    }
+  };
+
+  const [activeLinkItem, setActiveLinkItem] = useState<string>('home');
+  const handleNavLinkClick = (event: MouseEvent, targetSectionId: string) => {
+    event.preventDefault();
+    setActiveLinkItem(targetSectionId);
+
+    const targetSection = document.getElementById(targetSectionId);
+    if (targetSection) {
+      targetSection.scrollIntoView({ behavior: 'smooth' }); // Scroll to the target section
+      closeSideMenu();
+    }
+  };
+
   return (
     <div
       className={`${styles.navbarWrapper} ${
         isSideMenu ? styles.sideMenuLinksWrapper : ''
       }`}
     >
-      <Link to={ROUTES.home} className={styles.navbarBrand}>
+      <Link
+        to={ROUTES.home}
+        onClick={closeSideMenu}
+        className={styles.navbarBrand}
+      >
         <img
           className='img-full'
           alt='ديفكس'
@@ -29,52 +64,35 @@ export const NavLinksList = ({
       </Link>
       {!isSideMenu && (
         <button className={styles.menuToggler} onClick={onMenuButtonClick}>
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            viewBox='0 0 24 24'
-            width='24'
-            height='24'
-            fill='none'
-            stroke='currentColor'
-            stroke-width='2'
-            stroke-linecap='round'
-            stroke-linejoin='round'
-          >
-            <line x1='3' y1='12' x2='21' y2='12'></line>
-            <line x1='3' y1='6' x2='21' y2='6'></line>
-            <line x1='3' y1='18' x2='15' y2='18'></line>
-          </svg>
+          <Menu />
         </button>
       )}
 
       <ul className={styles.linksWrapper}>
-        <li>
-          <Link to={ROUTES.home} className={styles.active}>
-            الرئيسية
-          </Link>
-        </li>
-
-        <li>
-          <Link to={ROUTES.home}>من نحن</Link>
-        </li>
-        <li>
-          <Link to={ROUTES.home}>خدماتنا</Link>
-        </li>
-        <li>
-          <Link to={ROUTES.home}>إنجازاتنا</Link>
-        </li>
-        <li>
-          <Link to={ROUTES.home}>المشاريع</Link>
-        </li>
-        <li>
-          <Link to={ROUTES.home}>عملاؤنا</Link>
-        </li>
+        {navLinks.map(navLinkItem => (
+          <li>
+            <Link
+              onClick={e => handleNavLinkClick(e, navLinkItem.targetSection)}
+              to={`#${navLinkItem.targetSection}`}
+              className={`${
+                activeLinkItem === navLinkItem.targetSection
+                  ? styles.active
+                  : ''
+              }`}
+            >
+              {navLinkItem.nameAr}
+            </Link>
+          </li>
+        ))}
       </ul>
-      <Link to='#' className={styles.ctaWrap}>
-        <Button type='outlined-white' fullRadius>
-          تواصل معنا
-        </Button>
-      </Link>
+      <div className={styles.changeLangCtaWrap}>
+        <ChangeLanguage />
+        <Link to='#' className={styles.ctaWrap}>
+          <Button onClick={closeSideMenu} type='outlined-white' fullRadius>
+            تواصل معنا
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 };

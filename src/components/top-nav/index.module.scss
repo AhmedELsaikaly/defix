@@ -3,10 +3,16 @@
 .topNavWrapper {
   padding: 17px 0;
   background-color: $light-white-color;
+  @include md {
+    padding: 10px 0;
+  }
   p,
   li,
   a {
     color: $grey-color;
+    @include md {
+      font-size: 14px;
+    }
   }
 }
 
@@ -14,6 +20,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
+  @include xs {
+    flex-direction: column;
+  }
 }
 
 .topNavOpenDays {
@@ -40,6 +50,10 @@
         height: 25px;
         path {
           transition: all 0.3s ease-in-out;
+        }
+        @include md {
+          width: 15px;
+          height: 15px;
         }
       }
       &:hover {

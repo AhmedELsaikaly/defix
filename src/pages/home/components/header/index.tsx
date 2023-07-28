@@ -9,7 +9,7 @@ import { Button } from '../../../../components';
 
 export const Header = () => {
   return (
-    <header className={styles.header}>
+    <header className={styles.header} id='home'>
       <Swiper
         autoplay={{
           delay: 3500,

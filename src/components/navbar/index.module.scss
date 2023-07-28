@@ -2,6 +2,9 @@
 .navbar.navbar {
   padding: 20px 0;
   background-color: $primary-color;
+  @include md {
+    padding: 15px 0;
+  }
   @include lg {
     .ctaWrap,
     ul {
@@ -52,13 +55,17 @@
   width: 130px;
   height: 40px;
   overflow: hidden;
+  @include md {
+    width: 100px;
+    height: 30px;
+  }
 }
 
 .sideMenu {
   padding: 20px;
   position: fixed;
   top: 0;
-  inset-inline-start: -270px;
+  inset-inline-start: -300px;
   height: 100%;
   width: 250px;
   background-color: $primary-color;
@@ -80,6 +87,8 @@
 
   .navbarBrand {
     flex: 0 0 40px;
+    width: 130px;
+    height: 40px;
   }
   .ctaWrap {
     margin-top: auto;
@@ -152,5 +161,15 @@
     stroke: $white-color;
     width: 35px;
     height: 35px;
+    @include md {
+      width: 30px;
+      height: 30px;
+    }
   }
+}
+
+.changeLangCtaWrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }

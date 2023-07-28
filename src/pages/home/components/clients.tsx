@@ -7,10 +7,14 @@ import styles from '../index.module.scss';
 
 export const Clients = () => {
   return (
-    <SectionsWrapper className={styles.clientsSectionWrapper}>
+    <SectionsWrapper id='clients' className={styles.clientsSectionWrapper}>
       <Container>
         <SectionsTitle text='عملاؤنا' />
-        <div className={styles.clientsSliderWrapper}>
+        <div
+          data-aos='fade-in'
+          data-aos-delay='200'
+          className={styles.clientsSliderWrapper}
+        >
           <Swiper
             autoplay={{
               delay: 2000,
@@ -22,35 +26,27 @@ export const Clients = () => {
             loop
             pagination={{ enabled: true, clickable: true }}
             spaceBetween={10}
-            // slidesToS
-            //
-            // loop
-            // draggable={false}
-            // navigation={false}
-            // speed={1000}
-            // pagination={{
-            //   clickable: true,
-            // }}
-            // breakpoints={{
-            //   640: {
-            //     slidesPerView: 2,
-            //     spaceBetween: 20,
-            //   },
-            //   768: {
-            //     slidesPerView: 4,
-            //     spaceBetween: 40,
-            //   },
-            //   1024: {
-            //     slidesPerView: 5,
-            //     spaceBetween: 50,
-            //   },
-            // }}
+            breakpoints={{
+              0: {
+                slidesPerView: 2,
+              },
+              450: {
+                slidesPerView: 3,
+              },
+              768: {
+                slidesPerView: 4,
+              },
+              992: {
+                slidesPerView: 5,
+              },
+            }}
             modules={[Autoplay, Pagination]}
           >
             <SwiperSlide>
               <div className={styles.clientItem}>
                 <img
-                  className='img-full'
+                  loading='lazy'
+                  className='img-full '
                   src={importImageByProcessEnv('client-1.png')}
                   alt='client1'
                 />
@@ -59,7 +55,8 @@ export const Clients = () => {
             <SwiperSlide>
               <div className={styles.clientItem}>
                 <img
-                  className='img-full'
+                  loading='lazy'
+                  className='img-full '
                   src={importImageByProcessEnv('client-1.png')}
                   alt='client1'
                 />
@@ -68,7 +65,8 @@ export const Clients = () => {
             <SwiperSlide>
               <div className={styles.clientItem}>
                 <img
-                  className='img-full'
+                  loading='lazy'
+                  className='img-full '
                   src={importImageByProcessEnv('client-2.png')}
                   alt='client1'
                 />
@@ -77,7 +75,8 @@ export const Clients = () => {
             <SwiperSlide>
               <div className={styles.clientItem}>
                 <img
-                  className='img-full'
+                  loading='lazy'
+                  className='img-full '
                   src={importImageByProcessEnv('client-3.png')}
                   alt='client1'
                 />
@@ -86,7 +85,8 @@ export const Clients = () => {
             <SwiperSlide>
               <div className={styles.clientItem}>
                 <img
-                  className='img-full'
+                  loading='lazy'
+                  className='img-full '
                   src={importImageByProcessEnv('client-4.png')}
                   alt='client1'
                 />
@@ -95,7 +95,8 @@ export const Clients = () => {
             <SwiperSlide>
               <div className={styles.clientItem}>
                 <img
-                  className='img-full'
+                  loading='lazy'
+                  className='img-full '
                   src={importImageByProcessEnv('client-5.png')}
                   alt='client1'
                 />
@@ -104,7 +105,8 @@ export const Clients = () => {
             <SwiperSlide>
               <div className={styles.clientItem}>
                 <img
-                  className='img-full'
+                  loading='lazy'
+                  className='img-full '
                   src={importImageByProcessEnv('client-1.png')}
                   alt='client1'
                 />
@@ -113,7 +115,8 @@ export const Clients = () => {
             <SwiperSlide>
               <div className={styles.clientItem}>
                 <img
-                  className='img-full'
+                  loading='lazy'
+                  className='img-full '
                   src={importImageByProcessEnv('client-1.png')}
                   alt='client1'
                 />
@@ -122,7 +125,8 @@ export const Clients = () => {
             <SwiperSlide>
               <div className={styles.clientItem}>
                 <img
-                  className='img-full'
+                  loading='lazy'
+                  className='img-full '
                   src={importImageByProcessEnv('client-2.png')}
                   alt='client1'
                 />
@@ -131,7 +135,8 @@ export const Clients = () => {
             <SwiperSlide>
               <div className={styles.clientItem}>
                 <img
-                  className='img-full'
+                  loading='lazy'
+                  className='img-full '
                   src={importImageByProcessEnv('client-3.png')}
                   alt='client1'
                 />
@@ -140,7 +145,8 @@ export const Clients = () => {
             <SwiperSlide>
               <div className={styles.clientItem}>
                 <img
-                  className='img-full'
+                  loading='lazy'
+                  className='img-full '
                   src={importImageByProcessEnv('client-4.png')}
                   alt='client1'
                 />
@@ -149,7 +155,8 @@ export const Clients = () => {
             <SwiperSlide>
               <div className={styles.clientItem}>
                 <img
-                  className='img-full'
+                  loading='lazy'
+                  className='img-full '
                   src={importImageByProcessEnv('client-5.png')}
                   alt='client1'
                 />

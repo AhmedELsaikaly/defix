@@ -3,14 +3,16 @@ import styles from './index.module.scss';
 
 interface SectionsWrapperProps {
   className?: string;
+  id?: string;
 }
 
 const SectionsWrapper = ({
   className = '',
+  id,
   children,
 }: PropsWithChildren<SectionsWrapperProps>) => {
   return (
-    <section className={`${className} ${styles.sectionWrapper}`}>
+    <section id={id} className={`${className} ${styles.sectionWrapper}`}>
       {children}
     </section>
   );

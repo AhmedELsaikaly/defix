@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import NProgress from 'nprogress';
-import styles from './index.module.scss'
 import { Spinner } from 'reactstrap';
+import styles from './index.module.scss';
 
 function SuspenseLoader() {
   useEffect(() => {
@@ -13,10 +13,7 @@ function SuspenseLoader() {
   }, []);
 
   return (
-    <div
-    className={styles.suspenseWrapper}
-    
-    >
+    <div className={styles.suspenseWrapper}>
       <Spinner />
     </div>
   );

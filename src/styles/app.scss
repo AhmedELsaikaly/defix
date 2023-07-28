@@ -10,12 +10,27 @@
   --nav-links-font-size: 18px;
   --btn-font-size: 18px;
   // font sizes
-  --font-15: 15px;
-  --font-16: 16px;
   --font-18: 18px;
   --font-20: 20px;
-  --font-25: 25px;
-  --font-30: 30px;
+
+  @include md {
+    --h1-font-size: 40px;
+    --h2-font-size: 30px;
+    --h3-font-size: 25px;
+    --h4-font-size: 20px;
+    --h5-font-size: 18px;
+    // font sizes
+    --font-18: 16px;
+    --font-20: 18px;
+  }
+
+  @include sm {
+    --h1-font-size: 35px;
+    --h2-font-size: 25px;
+    --h3-font-size: 20px;
+    --h4-font-size: 18px;
+    --h5-font-size: 16px;
+  }
 }
 
 body {
@@ -23,6 +38,13 @@ body {
   font-family: var(--theme-font) !important;
   overflow-x: hidden;
 }
+
+html[lang='en'] {
+  body {
+    direction: ltr;
+  }
+}
+
 /* ========================================== 
                  Typography styles 
  ========================================== */
@@ -105,4 +127,8 @@ a {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.img-bg {
+  background-color: rgba($color: $primary-color, $alpha: 0.1);
 }

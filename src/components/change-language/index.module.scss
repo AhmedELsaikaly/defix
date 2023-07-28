@@ -1,0 +1,35 @@
+@import '../../styles/base';
+.changeLang {
+  button {
+    background-color: transparent;
+    border: 0;
+    svg {
+      margin-inline-start: 5px;
+      path {
+        fill: $white-color;
+      }
+    }
+    &:hover,
+    &:focus {
+      background-color: transparent;
+    }
+  }
+}
+
+.dropdownMenu {
+  min-width: 80px;
+  background-color: $primary-color;
+  :global {
+    .disabled {
+      color: $white-color;
+      opacity: 0.5;
+    }
+  }
+}
+.dropdownMenuItem {
+  color: $white-color;
+  &:focus,
+  &:hover {
+    color: $secondary-color;
+  }
+}

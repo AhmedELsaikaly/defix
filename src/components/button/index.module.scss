@@ -16,10 +16,13 @@
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   border-radius: 10px;
+  @include md {
+    padding: 8px 35px;
+  }
   span {
     display: inline-block;
     position: relative;
-    bottom: -2px;
+    // bottom: -2px;
   }
   &.fullRadius {
     border-radius: 25px;

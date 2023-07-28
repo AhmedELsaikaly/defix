@@ -6,9 +6,9 @@ import styles from '../index.module.scss';
 
 export const Statistics = () => {
   const { isSectionVisible, targetSectionRef } = useSectionVisibility();
-  console.log(isSectionVisible, 'isSectionVisible');
   return (
     <section
+      id='statistics'
       ref={targetSectionRef}
       className={styles.statistics}
       data-aos='fade-up'
@@ -16,11 +16,13 @@ export const Statistics = () => {
     >
       <Container>
         <div className={styles.statisticsWrapper}>
-          <Row className={styles.row}>
-            <Col lg='3'>
+          <Row className={`${styles.row} gy-4`}>
+            <Col lg='3' sm='6'>
               <div className={styles.statisticsItem}>
                 <div className={styles.statisticsItemImage}>
                   <img
+                    loading='lazy'
+                    className='img-bg'
                     title='منشأة'
                     alt='منشأة'
                     src={importImageByProcessEnv('icon1.svg')}
@@ -39,10 +41,12 @@ export const Statistics = () => {
                 </div>
               </div>
             </Col>
-            <Col lg='3'>
+            <Col lg='3' sm='6'>
               <div className={styles.statisticsItem}>
                 <div className={styles.statisticsItemImage}>
                   <img
+                    loading='lazy'
+                    className='img-bg'
                     title='منشأة'
                     alt='منشأة'
                     src={importImageByProcessEnv('icon1.svg')}
@@ -61,10 +65,12 @@ export const Statistics = () => {
                 </div>
               </div>
             </Col>
-            <Col lg='3'>
+            <Col lg='3' sm='6'>
               <div className={styles.statisticsItem}>
                 <div className={styles.statisticsItemImage}>
                   <img
+                    loading='lazy'
+                    className='img-bg'
                     title='منشأة'
                     alt='منشأة'
                     src={importImageByProcessEnv('icon1.svg')}
@@ -83,10 +89,12 @@ export const Statistics = () => {
                 </div>
               </div>
             </Col>
-            <Col lg='3'>
+            <Col lg='3' sm='6'>
               <div className={styles.statisticsItem}>
                 <div className={styles.statisticsItemImage}>
                   <img
+                    loading='lazy'
+                    className='img-bg'
                     title='منشأة'
                     alt='منشأة'
                     src={importImageByProcessEnv('icon1.svg')}

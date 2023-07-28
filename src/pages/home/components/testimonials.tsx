@@ -13,9 +13,9 @@ export const Testimonials = () => {
     },
   };
   return (
-    <SectionsWrapper className={styles.testimonialsSection}>
+    <SectionsWrapper id='testimonials' className={styles.testimonialsSection}>
       <Container>
-        <Row>
+        <Row className='gy-4'>
           <Col lg='4'>
             <SectionsTitle
               className={styles.testimonialsTitle}
@@ -27,7 +27,11 @@ export const Testimonials = () => {
             </p>
           </Col>
           <Col lg='8'>
-            <div className={styles.testimonialsSliderWrapper}>
+            <div
+              className={styles.testimonialsSliderWrapper}
+              data-aos='fade-in'
+              data-aos-delay='200'
+            >
               <Swiper
                 autoplay={{
                   delay: 3000,
@@ -56,7 +60,8 @@ export const Testimonials = () => {
                       </div>
                       <div className={styles.authorImg}>
                         <img
-                          className='img-full'
+                          loading='lazy'
+                          className='img-full img-bg'
                           src={importImageByProcessEnv('testim.png')}
                           alt='م. سائد النجار'
                           title='م. سائد النجار'
@@ -86,7 +91,8 @@ export const Testimonials = () => {
                       </div>
                       <div className={styles.authorImg}>
                         <img
-                          className='img-full'
+                          loading='lazy'
+                          className='img-full img-bg'
                           src={importImageByProcessEnv('testim.png')}
                           alt='م. سائد النجار'
                           title='م. سائد النجار'
@@ -116,7 +122,8 @@ export const Testimonials = () => {
                       </div>
                       <div className={styles.authorImg}>
                         <img
-                          className='img-full'
+                          loading='lazy'
+                          className='img-full img-bg'
                           src={importImageByProcessEnv('testim.png')}
                           alt='م. سائد النجار'
                           title='م. سائد النجار'

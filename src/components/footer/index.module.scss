@@ -15,12 +15,23 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
+    @include md {
+      flex-direction: column;
+    }
   }
+
   .startFooterSection,
   .endFooterSection {
     display: flex;
     align-items: center;
-    gap: 45px;
+    gap: 35px;
+  }
+  .startFooterSection {
+    @include md {
+      flex-direction: column;
+      justify-content: flex-start;
+    }
   }
   .endFooterSection {
     gap: 30px;

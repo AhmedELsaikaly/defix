@@ -25,7 +25,7 @@ const ProjectsImagesComp = () => {
 
 export const ProjectsSection = () => {
   return (
-    <SectionsWrapper className={styles.projectsSection}>
+    <SectionsWrapper id='projects' className={styles.projectsSection}>
       <Container>
         <SectionsTitle text='مشاريعنا' />
         <p data-aos='fade-up' data-aos-delay='200' className={styles.subtext}>
