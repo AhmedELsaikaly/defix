@@ -1,3 +1,4 @@
+import { useCallApi } from '../../hooks';
 import {
   Services,
   AboutSection,
@@ -9,6 +10,8 @@ import {
 } from './components';
 
 const Home = () => {
+  const { data, isLoading } = useCallApi('/header');
+  const { data: footerData, isLoading: footerLoading } = useCallApi('/footer');
   return (
     <div>
       <Header />

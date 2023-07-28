@@ -6,11 +6,11 @@ import { TopNav, Navbar, Footer, PagesWrapper } from './components';
 import { useCallApi, useLang } from './hooks';
 import './styles/app.scss';
 import 'swiper/css/pagination';
+import { FooterData, HeaderData } from './models';
 
 function App() {
   const content = useRoutes(routes);
   const currentLanguage = useLang();
-  console.log(currentLanguage, 'currentLanguagecurrentLanguage');
   useEffect(() => {
     const direction = currentLanguage === 'en' ? 'ltr' : 'rtl';
     document.body.dir = direction;
@@ -24,16 +24,18 @@ function App() {
     });
   }, []);
 
-  const { data, isLoading } = useCallApi('/header');
-  const { data: footerData, isLoading: footerLoading } = useCallApi('/footer');
+  const { data: headerData, isLoading } = useCallApi<HeaderData>('/header');
+  const { data: footerData, isLoading: footerLoading } =
+    useCallApi<FooterData>('/footer');
+  console.log(footerData, 'footerData');
 
   return (
     <div className='App'>
       <PagesWrapper loading={isLoading || footerLoading}>
-        <TopNav />
+        <TopNav headerData={headerData} />
         <Navbar />
         {content}
-        <Footer />
+        <Footer footerData={footerData} />
       </PagesWrapper>
     </div>
   );

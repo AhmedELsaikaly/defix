@@ -1,8 +1,12 @@
 import { Container } from 'reactstrap';
+import { HeaderData } from '../../models';
 import { MailIcon, WhatsappIcon } from '../icons';
 import styles from './index.module.scss';
 
-const TopNav = () => {
+interface TopNavProps {
+  headerData: HeaderData;
+}
+const TopNav = ({ headerData }: TopNavProps) => {
   return (
     <div className={styles.topNavWrapper}>
       <Container>
@@ -15,16 +19,22 @@ const TopNav = () => {
           </div>
           <ul className={styles.topNavContact}>
             <li>
-              <a href='#' title='تواصل مع ديفكس عبرالواتسب'>
-                <span className={styles.text}>0570707008</span>
+              <a
+                href={`mailto:${headerData?.whatsApp}`}
+                title='تواصل مع ديفكس عبرالواتسب'
+              >
+                <span className={styles.text}>{headerData?.whatsApp}</span>
                 <span>
                   <WhatsappIcon />
                 </span>
               </a>
             </li>
             <li>
-              <a href='#' title='تواصل مع ديفكس عبر البريد الإلكتروني'>
-                <span className={styles.text}>Info@deffixsa.com</span>
+              <a
+                href={`mailto:${headerData?.email}`}
+                title='تواصل مع ديفكس عبر البريد الإلكتروني'
+              >
+                <span className={styles.text}>{headerData?.email}</span>
                 <span>
                   <MailIcon />
                 </span>

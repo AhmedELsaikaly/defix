@@ -1,16 +1,13 @@
 import { useLang } from '../../hooks';
 
 interface BiLangProps {
-  parentData: Record<string, any>;
-  arKey: string;
-  enkey: string;
+  arValue: string;
+  enValue: string;
 }
 
-const BiLang = ({ arKey, enkey, parentData = {} }: BiLangProps) => {
+const BiLang = ({ arValue, enValue }: BiLangProps) => {
   const currentLanguage = useLang();
-  return (
-    <>{currentLanguage === 'ar' ? parentData[arKey] : parentData[enkey]}</>
-  );
+  return <>{currentLanguage === 'ar' ? arValue : enValue}</>;
 };
 
 export default BiLang;
