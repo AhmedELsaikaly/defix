@@ -1,17 +1,45 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Container } from 'reactstrap';
 import { NavLinksList } from './nav-links-list';
 import { SideMenu } from './side-menu';
 import styles from './index.module.scss';
 import { Overlay } from './overlay';
 
-const Navbar = () => {
+interface NavbarProps {
+  isWhiteBg?: boolean;
+}
+
+const Navbar = ({ isWhiteBg = false }: NavbarProps) => {
+  const navRef = useRef<HTMLElement>(null);
   const [isSideMenuOpened, setIsSideMenuOpened] = useState<boolean>(false);
+  const [isSticky, setIsSticky] = useState<boolean>(false);
+
+  useEffect(() => {
+    const sticky = navRef.current.offsetTop;
+    const handleScroll = () => {
+      if (navRef.current) {
+        setIsSticky(window.scrollY >= sticky);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <div>
-      <nav className={styles.navbar}>
+      <nav
+        ref={navRef}
+        className={`${styles.navbar} ${isSticky ? styles.sticky : ''} ${
+          isWhiteBg ? styles.whiteNav : ''
+        }`}
+      >
         <Container>
-          <NavLinksList onMenuButtonClick={() => setIsSideMenuOpened(true)} />
+          <NavLinksList
+            isChangeLangPrimary={isWhiteBg}
+            onMenuButtonClick={() => setIsSideMenuOpened(true)}
+          />
         </Container>
       </nav>
       <SideMenu

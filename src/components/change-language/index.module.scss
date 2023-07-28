@@ -8,6 +8,8 @@
       path {
         fill: $white-color;
       }
+      width: 25px;
+      height: 25px;
     }
     &:hover,
     &:focus {
@@ -31,5 +33,16 @@
   &:focus,
   &:hover {
     color: $secondary-color;
+  }
+}
+
+.changeLangPrimary.changeLangPrimary {
+  svg {
+    path {
+      fill: $primary-color;
+    }
+  }
+  span {
+    color: $primary-color;
   }
 }

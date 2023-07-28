@@ -35,17 +35,23 @@ const Footer = ({ footerData }: FooterDataProps) => {
           <div className={styles.endFooterSection}>
             <ul className={styles.socialList}>
               <li>
-                <a href='#' title='تابع ديفكس عبر تويتر'>
+                <a href={`${footerData?.twitter}`}>
                   <TwitterIcon />
                 </a>
               </li>
               <li>
-                <a href='#' title='تابع ديفكس عبر سنابشات'>
+                <a
+                  href={`${footerData?.snapChat}`}
+                  title='تابع ديفكس عبر سنابشات'
+                >
                   <SnapShatIcon />
                 </a>
               </li>
               <li>
-                <a href='#' title='تابع ديفكس عبر انستقرام'>
+                <a
+                  href={`${footerData?.twitter}`}
+                  title='تابع ديفكس عبر انستقرام'
+                >
                   <InstaIcon />
                 </a>
               </li>

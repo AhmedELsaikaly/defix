@@ -1,0 +1,18 @@
+@import '../../styles/base';
+
+.moreBtnWrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  button {
+    padding: 10px 60px;
+  }
+}
+
+.projectsSection {
+  .subtext {
+    text-align: center;
+    color: $primary-color;
+    font-size: var(--h4-font-size);
+  }
+}

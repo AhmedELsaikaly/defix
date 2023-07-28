@@ -1,9 +1,12 @@
-import React from 'react'
+import { Services } from '../../components';
+import PageWrapper from '../../components/page-wrapper';
 
 const AboutUs = () => {
   return (
-    <div>AboutUs</div>
-  )
-}
+    <PageWrapper>
+      <Services />
+    </PageWrapper>
+  );
+};
 
-export default AboutUs
+export default AboutUs;

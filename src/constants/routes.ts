@@ -1,5 +1,6 @@
-export const ROUTES  = {
-    home:'/',
-    aboutUs:'/about-us',
-    notFound:'*',
-}
+export const ROUTES = {
+  home: '/',
+  aboutUs: '/about-us',
+  projects: '/projects',
+  notFound: '*',
+};

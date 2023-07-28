@@ -9,7 +9,11 @@ import { LangIcon } from '../icons';
 import styles from './index.module.scss';
 import { useLang } from '../../hooks';
 
-const ChangeLanguage = () => {
+interface ChangeLanguageProps {
+  isPrimary?: boolean;
+}
+
+const ChangeLanguage = ({ isPrimary = false }: ChangeLanguageProps) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggle = () => setDropdownOpen(prevState => !prevState);
   const currentLanguage = useLang();
@@ -20,7 +24,9 @@ const ChangeLanguage = () => {
   };
   return (
     <UncontrolledDropdown
-      className={styles.changeLang}
+      className={`${isPrimary ? styles.changeLangPrimary : ''} ${
+        styles.changeLang
+      }`}
       isOpen={dropdownOpen}
       toggle={toggle}
       direction='down'
