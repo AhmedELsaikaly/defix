@@ -5,10 +5,11 @@ import Button from '../button';
 
 interface TabsProps {
   tabs: { name: string; content: ReactNode | ReactNode[] }[];
+  setSelectedTab: React.Dispatch<React.SetStateAction<string>>;
+  activeTab: '0' | '1';
 }
 
-const Tabs = ({ tabs }: TabsProps) => {
-  const [activeTab, setActiveTab] = useState<string>('0');
+const Tabs = ({ tabs, setSelectedTab, activeTab }: TabsProps) => {
   return (
     <div>
       <div className={styles.btnsWrapper}>
@@ -16,7 +17,7 @@ const Tabs = ({ tabs }: TabsProps) => {
           <Button
             key={index}
             type={String(index) === activeTab ? 'primary' : 'outlined'}
-            onClick={() => setActiveTab(String(index))}
+            onClick={() => setSelectedTab(String(index))}
           >
             {item.name}
           </Button>

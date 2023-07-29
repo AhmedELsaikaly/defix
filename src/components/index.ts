@@ -14,5 +14,9 @@ export { default as ChangeLanguage } from './change-language';
 export { default as BiLang } from './bi-lang-comp';
 export { default as ProjectsSection } from './project-section';
 export { default as Services } from './services-section';
+export { default as PagesHeader } from './pages-header';
+export { default as ContentWithImageComp } from './content-with-img-comp';
+export { default as Subtext } from './subtext';
+export { default as MoreBtnLink } from './more-btn-link';
 
 export * from './icons';

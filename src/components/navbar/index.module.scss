@@ -210,3 +210,11 @@
     }
   }
 }
+
+:global {
+  html[lang='en'] {
+    .menu-toggler {
+      transform: scale(-1, 1);
+    }
+  }
+}

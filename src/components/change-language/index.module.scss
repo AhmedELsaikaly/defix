@@ -1,5 +1,7 @@
 @import '../../styles/base';
 .changeLang {
+  position: relative;
+  z-index: 999;
   button {
     background-color: transparent;
     border: 0;
@@ -21,6 +23,8 @@
 .dropdownMenu {
   min-width: 80px;
   background-color: $primary-color;
+
+  z-index: 999;
   :global {
     .disabled {
       color: $white-color;

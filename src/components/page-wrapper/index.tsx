@@ -8,7 +8,14 @@ interface PageWrapperProps {
 
 const PageWrapper = ({ children, loading = false }: PageWrapperProps) => {
   return (
-    <div style={{ minHeight: '100vh' }}>
+    <div
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+      }}
+    >
       {loading ? <SuspenseLoader /> : children}
     </div>
   );

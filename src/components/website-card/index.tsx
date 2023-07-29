@@ -1,4 +1,7 @@
+import { Link } from 'react-router-dom';
 import styles from './index.module.scss';
+import { ArrowLeft } from '../icons';
+import MoreBtnLink from '../more-btn-link';
 
 interface WebsiteCardProps {
   title: string;
@@ -6,6 +9,7 @@ interface WebsiteCardProps {
   iconLink: string;
   iconHaveBg?: boolean;
   hovered?: boolean;
+  moreBtnLink?: string;
 }
 
 const WebsiteCard = ({
@@ -14,6 +18,7 @@ const WebsiteCard = ({
   iconLink,
   iconHaveBg,
   hovered,
+  moreBtnLink,
 }: WebsiteCardProps) => {
   return (
     <div
@@ -34,6 +39,7 @@ const WebsiteCard = ({
         <h5>{title}</h5>
       </div>
       <p>{text}</p>
+      {moreBtnLink && <MoreBtnLink link={moreBtnLink} text='عرض التفاصيل' />}
     </div>
   );
 };

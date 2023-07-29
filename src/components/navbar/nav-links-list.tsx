@@ -41,7 +41,7 @@ export const NavLinksList = ({
 
     const targetSection = document.getElementById(targetSectionId);
     if (targetSection) {
-      targetSection.scrollIntoView({ behavior: 'smooth' }); // Scroll to the target section
+      targetSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); // Scroll to the target section
       closeSideMenu();
     }
   };
@@ -85,7 +85,10 @@ export const NavLinksList = ({
       <div className={styles.changeLangCtaWrap}>
         {!isSideMenu && <ChangeLanguage isPrimary={isChangeLangPrimary} />}
         {!isSideMenu && (
-          <button className={styles.menuToggler} onClick={onMenuButtonClick}>
+          <button
+            className={`${styles.menuToggler} menu-toggler`}
+            onClick={onMenuButtonClick}
+          >
             <Menu />
           </button>
         )}

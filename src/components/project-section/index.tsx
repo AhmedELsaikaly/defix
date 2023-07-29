@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Container } from 'reactstrap';
 import ProjectsImages from '../projects-images';
 import { importImageByProcessEnv } from '../../utils';
@@ -8,6 +9,7 @@ import Button from '../button';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../constants';
 import styles from './index.module.scss';
+import Subtext from '../subtext';
 
 const ProjectsImagesComp = () => {
   return (
@@ -25,24 +27,37 @@ const ProjectsImagesComp = () => {
 
 interface ProjectsSectionProps {
   withMoreBtn?: boolean;
+  selectedTab?: '0' | '1';
 }
 
-const ProjectsSection = ({ withMoreBtn = true }: ProjectsSectionProps) => {
+const ProjectsSection = ({
+  withMoreBtn = true,
+  selectedTab,
+}: ProjectsSectionProps) => {
   const navigate = useNavigate();
+  const [activeTab, setActiveTab] = useState<'0' | '1'>('0');
+  useEffect(() => {
+    if (selectedTab) {
+      setActiveTab(selectedTab);
+    }
+  }, [selectedTab]);
   return (
     <SectionsWrapper id='projects' className={styles.projectsSection}>
       <Container>
         <SectionsTitle text='مشاريعنا' />
-        <p data-aos='fade-up' data-aos-delay='200' className={styles.subtext}>
-          تقدم شركة ديفكس خدمات احترافية وتلبية احتياجات سوق العمل في مختلف
-          التخصصات
-        </p>
+        <Subtext
+          text='   تقدم شركة ديفكس خدمات احترافية وتلبية احتياجات سوق العمل في مختلف
+          التخصصات'
+        />
+
         <div
           className={styles.projectsTabs}
           data-aos='fade-up'
           data-aos-delay='250'
         >
           <Tabs
+            activeTab={activeTab}
+            setSelectedTab={setActiveTab}
             tabs={[
               { name: 'الإنشاءات', content: <ProjectsImagesComp /> },
               { name: 'الصيانة', content: <ProjectsImagesComp /> },

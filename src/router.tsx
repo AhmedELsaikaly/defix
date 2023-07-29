@@ -12,6 +12,9 @@ const Loader = Component => (props: any) =>
 const HomePage = Loader(lazy(() => import('./pages/home')));
 const AboutUs = Loader(lazy(() => import('./pages/about')));
 const NotFound = Loader(lazy(() => import('./pages/not-found')));
+const Services = Loader(lazy(() => import('./pages/services')));
+const ServiceDetails = Loader(lazy(() => import('./pages/service-details')));
+const Projects = Loader(lazy(() => import('./pages/projects')));
 
 const routes: RouteObject[] = [
   {
@@ -22,6 +25,20 @@ const routes: RouteObject[] = [
     path: ROUTES.aboutUs,
     element: <AboutUs />,
   },
+
+  {
+    path: ROUTES.services,
+    element: <Services />,
+  },
+  {
+    path: ROUTES.serviceDetails,
+    element: <ServiceDetails />,
+  },
+  {
+    path: ROUTES.projects,
+    element: <Projects />,
+  },
+
   {
     path: ROUTES.notFound,
     element: <NotFound />,

@@ -49,3 +49,11 @@
   width: 100%;
   height: 100%;
 }
+
+@mixin noOfLines($linesNo) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: $linesNo; /* number of lines to show */
+  line-clamp: $linesNo;
+  -webkit-box-orient: vertical;
+}

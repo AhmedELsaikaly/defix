@@ -46,3 +46,32 @@
     }
   }
 }
+
+.moreBtnLink {
+  color: #013147;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 12px;
+  font-weight: $bold;
+  gap: 5px;
+  span {
+    display: inline-block;
+  }
+  svg {
+    position: relative;
+    bottom: -3px;
+    path {
+      transition: all 0.3s ease-in-out;
+    }
+  }
+  &:hover {
+    color: $secondary-color;
+    svg {
+      transition: transform 0.3s ease-in-out;
+      transform: translateX(-10px);
+      path {
+        fill: $secondary-color;
+      }
+    }
+  }
+}
