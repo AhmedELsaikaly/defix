@@ -1,12 +1,12 @@
-import { useState, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { TabContent, TabPane } from 'reactstrap';
 import styles from './index.module.scss';
 import Button from '../button';
 
 interface TabsProps {
-  tabs: { name: string; content: ReactNode | ReactNode[] }[];
+  tabs: { id: string; name: string; content: ReactNode | ReactNode[] }[];
   setSelectedTab: React.Dispatch<React.SetStateAction<string>>;
-  activeTab: '0' | '1';
+  activeTab: string;
 }
 
 const Tabs = ({ tabs, setSelectedTab, activeTab }: TabsProps) => {
@@ -16,8 +16,8 @@ const Tabs = ({ tabs, setSelectedTab, activeTab }: TabsProps) => {
         {tabs.map((item, index) => (
           <Button
             key={index}
-            type={String(index) === activeTab ? 'primary' : 'outlined'}
-            onClick={() => setSelectedTab(String(index))}
+            type={item.id === activeTab ? 'primary' : 'outlined'}
+            onClick={() => setSelectedTab(item.id)}
           >
             {item.name}
           </Button>
@@ -26,7 +26,7 @@ const Tabs = ({ tabs, setSelectedTab, activeTab }: TabsProps) => {
 
       <TabContent activeTab={activeTab}>
         {tabs.map((item, index) => (
-          <TabPane key={index} tabId={String(index)}>
+          <TabPane key={index} tabId={item.id}>
             {item.content}
           </TabPane>
         ))}

@@ -5,71 +5,54 @@ import SectionsWrapper from '../sections-wrapper';
 import SectionsTitle from '../sections-title';
 import Tabs from '../tabs';
 import Button from '../button';
-import styles from './index.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../constants';
 import Subtext from '../subtext';
+import { ServicesItem } from '../../models';
+import styles from './index.module.scss';
+import { getValueByLang } from '../../utils';
 
 interface ServicesProp {
   withMoreBtn?: boolean;
-  selectedTab?: '0' | '1';
+  selectedTab?: string;
+  serviceData?: {
+    descriptionOurServicesAr: string;
+    descriptionOurServicesEn: string;
+    businessHome: ServicesItem[];
+    servicesHome: ServicesItem[];
+  };
 }
 
-const ServiceCards = () => {
+interface ServiceCardsProps {
+  servicesDataList: Array<ServicesItem>;
+}
+
+const ServiceCards = ({ servicesDataList }: ServiceCardsProps) => {
   return (
     <Row className='gy-4 justify-content-center'>
-      <Col xl='4' lg='6'>
-        <WebsiteCard
-          moreBtnLink={`${ROUTES.services}/1`}
-          iconHaveBg
-          iconLink='https://deffix.alialqrinawi.me/uploads/Sliders/wdztgAiKVZM21690036183_.jpg'
-          title='التخطيط والتصميم'
-          text='تبدأ عملية البناء بتخطيط شامل للمشروع وتصميم مفصل يأخذ في الاعتبار المتطلبات الوظيفية والتصميمية للمبنى. يتضمن ذلك دراسة الموقع وتحديد المساحة والمواصفات المطلوبة وتحليل الاحتياجات المستقبلية'
-        />
-      </Col>
-      <Col xl='4' lg='6'>
-        <WebsiteCard
-          moreBtnLink={`${ROUTES.services}/1`}
-          iconHaveBg
-          iconLink='https://deffix.alialqrinawi.me/uploads/Sliders/wdztgAiKVZM21690036183_.jpg'
-          title='التخطيط والتصميم'
-          text='تبدأ عملية البناء بتخطيط شامل للمشروع وتصميم مفصل يأخذ في الاعتبار المتطلبات الوظيفية والتصميمية للمبنى. يتضمن ذلك دراسة الموقع وتحديد المساحة والمواصفات المطلوبة وتحليل الاحتياجات المستقبلية'
-        />
-      </Col>
-      <Col xl='4' lg='6'>
-        <WebsiteCard
-          moreBtnLink={`${ROUTES.services}/1`}
-          iconHaveBg
-          iconLink='https://deffix.alialqrinawi.me/uploads/Sliders/wdztgAiKVZM21690036183_.jpg'
-          title='التخطيط والتصميم'
-          text='تبدأ عملية البناء بتخطيط شامل للمشروع وتصميم مفصل يأخذ في الاعتبار المتطلبات الوظيفية والتصميمية للمبنى. يتضمن ذلك دراسة الموقع وتحديد المساحة والمواصفات المطلوبة وتحليل الاحتياجات المستقبلية'
-        />
-      </Col>
-      <Col xl='4' lg='6'>
-        <WebsiteCard
-          moreBtnLink={`${ROUTES.services}/1`}
-          iconHaveBg
-          iconLink='https://deffix.alialqrinawi.me/uploads/Sliders/wdztgAiKVZM21690036183_.jpg'
-          title='التخطيط والتصميم'
-          text='تبدأ عملية البناء بتخطيط شامل للمشروع وتصميم مفصل يأخذ في الاعتبار المتطلبات الوظيفية والتصميمية للمبنى. يتضمن ذلك دراسة الموقع وتحديد المساحة والمواصفات المطلوبة وتحليل الاحتياجات المستقبلية'
-        />
-      </Col>
-      <Col xl='4' lg='6'>
-        <WebsiteCard
-          moreBtnLink={`${ROUTES.services}/1`}
-          iconHaveBg
-          iconLink='https://deffix.alialqrinawi.me/uploads/Sliders/wdztgAiKVZM21690036183_.jpg'
-          title='التخطيط والتصميم'
-          text='تبدأ عملية البناء بتخطيط شامل للمشروع وتصميم مفصل يأخذ في الاعتبار المتطلبات الوظيفية والتصميمية للمبنى. يتضمن ذلك دراسة الموقع وتحديد المساحة والمواصفات المطلوبة وتحليل الاحتياجات المستقبلية'
-        />
-      </Col>
+      {servicesDataList?.map((item: ServicesItem) => (
+        <Col xl='4' lg='6' key={item.id}>
+          <WebsiteCard
+            iconHaveBg
+            iconLink={item?.icon}
+            title={getValueByLang(item?.title_ar, item?.title_en)}
+            text={getValueByLang(item?.description_ar, item?.description_en)}
+          />
+        </Col>
+      ))}
     </Row>
   );
 };
 
-const Services = ({ withMoreBtn = true, selectedTab }: ServicesProp) => {
+const Services = ({
+  withMoreBtn = true,
+  selectedTab,
+  serviceData,
+}: ServicesProp) => {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState<'0' | '1'>(selectedTab || '0');
+  const [activeTab, setActiveTab] = useState<string>(
+    selectedTab || 'construction'
+  );
 
   useEffect(() => {
     if (selectedTab) {
@@ -95,8 +78,20 @@ const Services = ({ withMoreBtn = true, selectedTab }: ServicesProp) => {
             activeTab={activeTab}
             setSelectedTab={setActiveTab}
             tabs={[
-              { name: 'الإنشاءات', content: <ServiceCards /> },
-              { name: 'الصيانة', content: <ServiceCards /> },
+              {
+                id: 'construction',
+                name: 'الإنشاءات',
+                content: (
+                  <ServiceCards servicesDataList={serviceData?.servicesHome} />
+                ),
+              },
+              {
+                id: 'maintenance',
+                name: 'الصيانة',
+                content: (
+                  <ServiceCards servicesDataList={serviceData?.businessHome} />
+                ),
+              },
             ]}
           />
         </div>
@@ -108,7 +103,7 @@ const Services = ({ withMoreBtn = true, selectedTab }: ServicesProp) => {
           >
             <Button
               onClick={() =>
-                navigate(`${ROUTES.services}?selected=maintenance`)
+                navigate(`${ROUTES.services}?selected=${activeTab}`)
               }
               whiteText
               type='primary'

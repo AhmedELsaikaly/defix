@@ -59,8 +59,16 @@ const ProjectsSection = ({
             activeTab={activeTab}
             setSelectedTab={setActiveTab}
             tabs={[
-              { name: 'الإنشاءات', content: <ProjectsImagesComp /> },
-              { name: 'الصيانة', content: <ProjectsImagesComp /> },
+              {
+                id: 'construction',
+                name: 'الإنشاءات',
+                content: <ProjectsImagesComp />,
+              },
+              {
+                id: 'maintenance',
+                name: 'الصيانة',
+                content: <ProjectsImagesComp />,
+              },
             ]}
           />
         </div>

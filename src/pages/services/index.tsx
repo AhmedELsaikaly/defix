@@ -8,7 +8,7 @@ const Service = () => {
     <PageWrapper>
       <Services
         withMoreBtn={false}
-        selectedTab={searchParams.get('selected') === 'maintenance' ? '1' : '0'}
+        selectedTab={searchParams.get('selected')}
       />
     </PageWrapper>
   );

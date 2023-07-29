@@ -7,12 +7,16 @@ import { useCallApi, useLang } from './hooks';
 import { ROUTES } from './constants';
 import './styles/app.scss';
 import 'swiper/css/pagination';
+import { FooterData, HeaderData } from './models';
 
 function App() {
   const content = useRoutes(routes);
   const match = useMatch(ROUTES.home);
   const location = useLocation();
   const currentLanguage = useLang();
+  const { data: headerData, isLoading } = useCallApi<HeaderData>('/header');
+  const { data: footerData, isLoading: footerLoading } =
+    useCallApi<FooterData>('/footer');
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -31,18 +35,16 @@ function App() {
     });
   }, []);
 
-  // const { data, isLoading } = useCallApi('/header');
-  // const { data: footerData, isLoading: footerLoading } = useCallApi('/footer');
   return (
     <div className='App'>
-      <PagesWrapper loading={false}>
+      <PagesWrapper loading={isLoading || footerLoading}>
         <div>
-          <TopNav />
+          <TopNav headerData={headerData} />
           <Navbar isWhiteBg={!match} />
         </div>
 
         {content}
-        <Footer />
+        <Footer footerData={footerData} />
       </PagesWrapper>
     </div>
   );
