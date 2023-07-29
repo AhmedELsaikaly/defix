@@ -1,3 +1,5 @@
+import { IBusinessItem, IServiceItem } from './services';
+
 export interface HeaderData {
   email: string;
   logoAr: string;
@@ -27,8 +29,8 @@ export interface BodySliderData {
   aboutHome: AboutHome[];
   descriptionOurServicesAr: string;
   descriptionOurServicesEn: string;
-  businessHome: ServicesItem[];
-  servicesHome: ServicesItem[];
+  businessHome: IBusinessItem[];
+  servicesHome: IServiceItem[];
   facility: string;
   maintenanceService: string;
   certifiedEmployee: string;

@@ -5,8 +5,15 @@ interface ProjectCardProps {
   desc: string;
   imgLink: string;
   id: string;
+  onDetailsClick: (data: any) => void;
 }
-export const ProjectCard = ({ title, desc, imgLink, id }: ProjectCardProps) => {
+export const ProjectCard = ({
+  title,
+  desc,
+  imgLink,
+  id,
+  onDetailsClick,
+}: ProjectCardProps) => {
   return (
     <div className={styles.projectCard}>
       <div className={styles.projectCardImage}>
@@ -23,7 +30,10 @@ export const ProjectCard = ({ title, desc, imgLink, id }: ProjectCardProps) => {
           <h5>{title}</h5>
           <p>{desc}</p>
         </div>
-        <MoreBtnLink text='عرض التفاصيل' />
+        <MoreBtnLink
+          onClick={() => onDetailsClick({ desc, title, imgLink })}
+          text='عرض التفاصيل'
+        />
       </div>
     </div>
   );

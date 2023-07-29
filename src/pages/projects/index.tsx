@@ -1,15 +1,12 @@
 import { useState } from 'react';
 import PageWrapper from '../../components/page-wrapper';
+import { Col, Container, Row } from 'reactstrap';
 import {
-  Col,
-  Container,
-  Modal,
-  ModalBody,
-  ModalFooter,
-  ModalHeader,
-  Row,
-} from 'reactstrap';
-import { SectionsTitle, SectionsWrapper, Subtext } from '../../components';
+  DetailsModal,
+  SectionsTitle,
+  SectionsWrapper,
+  Subtext,
+} from '../../components';
 import { ProjectCard } from './components';
 import { importImageByProcessEnv } from '../../utils';
 import { useModalState } from '../../hooks';
@@ -44,16 +41,12 @@ const projectsCards = [
 
 const Projects = () => {
   const [modalContent, setModalContent] = useState<any>();
-  const { isOpen, openModal, toggleModal, closeModal } = useModalState();
-  const toggle = () => toggleModal();
+  const { isOpen, openModal, toggleModal } = useModalState();
   const handleDetailsClick = (details: any) => {
     setModalContent(details);
     openModal();
   };
 
-  const handleModalClose = (details: any) => {
-    closeModal();
-  };
   return (
     <PageWrapper>
       <SectionsWrapper>
@@ -66,6 +59,7 @@ const Projects = () => {
               {projectsCards.map(item => (
                 <Col xl='4' md='6'>
                   <ProjectCard
+                    onDetailsClick={handleDetailsClick}
                     title={item.title}
                     desc={item.desc}
                     imgLink={item.imgLink}
@@ -77,25 +71,16 @@ const Projects = () => {
           </SectionsWrapper>
         </Container>
       </SectionsWrapper>
-      <Modal
-        centered
-        isOpen={true}
-        toggle={toggleModal}
-        // className={className}
-        backdrop
-        keyboard
-      >
-        <ModalHeader toggle={toggle}>Modal title</ModalHeader>
-        <ModalBody>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </ModalBody>
-      </Modal>
+      <DetailsModal
+        onClosed={() => setModalContent(undefined)}
+        data={{
+          title: modalContent?.title,
+          desc: modalContent?.desc,
+          imgLink: modalContent?.imgLink,
+        }}
+        isOpen={isOpen}
+        toggleModal={toggleModal}
+      />
     </PageWrapper>
   );
 };

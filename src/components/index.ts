@@ -18,5 +18,6 @@ export { default as PagesHeader } from './pages-header';
 export { default as ContentWithImageComp } from './content-with-img-comp';
 export { default as Subtext } from './subtext';
 export { default as MoreBtnLink } from './more-btn-link';
+export { default as DetailsModal } from './details-modal';
 
 export * from './icons';

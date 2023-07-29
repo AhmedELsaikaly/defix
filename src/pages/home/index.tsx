@@ -22,10 +22,18 @@ const Home = () => {
         <Services
           selectedTab={activeTab}
           setSelectedTab={id => setActiveTab(id)}
-          serviceData={data}
+          serviceData={{
+            services: data?.servicesHome,
+            business: data?.businessHome,
+            descriptionOurServicesAr: data?.descriptionOurServicesAr,
+            descriptionOurServicesEn: data?.descriptionOurServicesEn,
+          }}
         />
         <Statistics />
-        <ProjectsSection />
+        <ProjectsSection
+          title='مشاريعنا'
+          subTitle='تقدم شركة ديفكس خدمات احترافية وتلبية احتياجات سوق العمل في مختلف التخصصات'
+        />
         <Clients />
         <Testimonials />
       </PagesWrapper>
