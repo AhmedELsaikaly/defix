@@ -8,17 +8,22 @@ import {
   Testimonials,
 } from './components';
 import { BodySliderData } from '../../models';
+import { useState } from 'react';
 
 const Home = () => {
   const { data, isLoading } = useCallApi<BodySliderData>('/body');
-  console.log(data, 'data');
+  const [activeTab, setActiveTab] = useState<string>('construction');
 
   return (
     <div>
       <PagesWrapper loading={isLoading}>
         <Header bodyData={data} />
         <AboutSection aboutSection={data} />
-        <Services serviceData={data} />
+        <Services
+          selectedTab={activeTab}
+          setSelectedTab={id => setActiveTab(id)}
+          serviceData={data}
+        />
         <Statistics />
         <ProjectsSection />
         <Clients />

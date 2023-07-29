@@ -55,7 +55,7 @@ const ProjectsSection = ({
           data-aos='fade-up'
           data-aos-delay='250'
         >
-          <Tabs
+          {/* <Tabs
             activeTab={activeTab}
             setSelectedTab={setActiveTab}
             tabs={[
@@ -70,7 +70,8 @@ const ProjectsSection = ({
                 content: <ProjectsImagesComp />,
               },
             ]}
-          />
+          /> */}
+          <ProjectsImagesComp />
         </div>
         {withMoreBtn && (
           <div

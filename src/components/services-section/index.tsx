@@ -21,6 +21,7 @@ interface ServicesProp {
     businessHome: ServicesItem[];
     servicesHome: ServicesItem[];
   };
+  setSelectedTab: (tabId: string) => void;
 }
 
 interface ServiceCardsProps {
@@ -48,17 +49,9 @@ const Services = ({
   withMoreBtn = true,
   selectedTab,
   serviceData,
+  setSelectedTab,
 }: ServicesProp) => {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState<string>(
-    selectedTab || 'construction'
-  );
-
-  useEffect(() => {
-    if (selectedTab) {
-      setActiveTab(selectedTab);
-    }
-  }, [selectedTab]);
 
   return (
     <SectionsWrapper id='services' className={styles.servicesSection}>
@@ -75,8 +68,8 @@ const Services = ({
           data-aos-delay='250'
         >
           <Tabs
-            activeTab={activeTab}
-            setSelectedTab={setActiveTab}
+            activeTab={selectedTab}
+            setSelectedTab={setSelectedTab}
             tabs={[
               {
                 id: 'construction',
@@ -103,7 +96,7 @@ const Services = ({
           >
             <Button
               onClick={() =>
-                navigate(`${ROUTES.services}?selected=${activeTab}`)
+                navigate(`${ROUTES.services}?selected=${selectedTab}`)
               }
               whiteText
               type='primary'

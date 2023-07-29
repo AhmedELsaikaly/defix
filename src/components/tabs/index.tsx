@@ -5,7 +5,7 @@ import Button from '../button';
 
 interface TabsProps {
   tabs: { id: string; name: string; content: ReactNode | ReactNode[] }[];
-  setSelectedTab: React.Dispatch<React.SetStateAction<string>>;
+  setSelectedTab: (tabId: string) => void;
   activeTab: string;
 }
 
