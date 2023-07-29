@@ -10,6 +10,7 @@ interface WebsiteCardProps {
   hovered?: boolean;
   moreBtnLink?: string;
   onMoreBtnClick?: () => void;
+  withDetailsBtn?: boolean;
 }
 
 const WebsiteCard = ({
@@ -20,6 +21,7 @@ const WebsiteCard = ({
   hovered,
   moreBtnLink,
   onMoreBtnClick,
+  withDetailsBtn = false,
 }: WebsiteCardProps) => {
   return (
     <div
@@ -40,10 +42,18 @@ const WebsiteCard = ({
         <h5>{title}</h5>
       </div>
       <p>{text}</p>
-      {moreBtnLink && <MoreBtnLink link={moreBtnLink} text='عرض التفاصيل' />}
-      {onMoreBtnClick && (
-        <MoreBtnLink onClick={onMoreBtnClick} text='عرض التفاصيل' />
-      )}
+      <>
+        {withDetailsBtn && (
+          <>
+            {moreBtnLink && (
+              <MoreBtnLink link={moreBtnLink} text='عرض التفاصيل' />
+            )}
+            {onMoreBtnClick && (
+              <MoreBtnLink onClick={onMoreBtnClick} text='عرض التفاصيل' />
+            )}
+          </>
+        )}
+      </>
     </div>
   );
 };

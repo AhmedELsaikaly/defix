@@ -19,24 +19,32 @@ interface ServicesProp {
   serviceData?: IServices;
   setSelectedTab: (tabId: string) => void;
   onDetailsBtnClick?: (itemData: IBusinessItem) => void;
+  withDetailsBtn?: boolean;
 }
 
 interface ServiceCardsProps {
   servicesDataList: Array<IBusinessItem | IServiceItem>;
   moreBtnLink?: string;
   onDetailsBtnClick?: (itemData: IServiceItem) => void;
+  withDetailsBtn?: boolean;
 }
 
 const ServiceCards = ({
   servicesDataList,
   onDetailsBtnClick,
+  withDetailsBtn = false,
 }: ServiceCardsProps) => {
   return (
     <Row className='gy-4 justify-content-center'>
       {servicesDataList?.map((item: IBusinessItem | IServiceItem) => (
         <Col xl='4' lg='6' key={item.id}>
           <WebsiteCard
-            onMoreBtnClick={() => onDetailsBtnClick(item as IServiceItem)}
+            withDetailsBtn={withDetailsBtn}
+            onMoreBtnClick={
+              onDetailsBtnClick
+                ? () => onDetailsBtnClick(item as IServiceItem)
+                : undefined
+            }
             moreBtnLink={
               !onDetailsBtnClick ? `${ROUTES.services}/${item.id}` : undefined
             }
@@ -57,6 +65,7 @@ const Services = ({
   serviceData,
   setSelectedTab,
   onDetailsBtnClick,
+  withDetailsBtn,
 }: ServicesProp) => {
   const navigate = useNavigate();
   console.log(onDetailsBtnClick, 'onDetailsBtnClickonDetailsBtnClick');
@@ -83,6 +92,7 @@ const Services = ({
                 name: 'الإنشاءات',
                 content: (
                   <ServiceCards
+                    withDetailsBtn={withDetailsBtn}
                     onDetailsBtnClick={onDetailsBtnClick}
                     servicesDataList={serviceData?.services}
                   />
@@ -92,7 +102,10 @@ const Services = ({
                 id: 'maintenance',
                 name: 'الصيانة',
                 content: (
-                  <ServiceCards servicesDataList={serviceData?.business} />
+                  <ServiceCards
+                    withDetailsBtn={withDetailsBtn}
+                    servicesDataList={serviceData?.business}
+                  />
                 ),
               },
             ]}

@@ -40,14 +40,27 @@ const Service = () => {
       )}
 
       <Services
+        withDetailsBtn
         serviceData={data}
         setSelectedTab={tabId => handleSelectTab(tabId)}
         withMoreBtn={false}
         selectedTab={activeTab}
         onDetailsBtnClick={handleMoreBtnClick}
       />
-      <h2 className={styles.projectTitle}>الإطلاع على مشاريعنا</h2>
-      <ProjectsSection className={styles.projectsSectionWrap} />
+      {activeTab === 'construction' && (
+        <>
+          <h2
+            data-aos='fade-up'
+            data-aos-delay='150'
+            className={styles.projectTitle}
+          >
+            الإطلاع على مشاريعنا
+          </h2>
+
+          <ProjectsSection className={styles.projectsSectionWrap} />
+        </>
+      )}
+
       <DetailsModal
         onClosed={() => setModalData(undefined)}
         withIcon

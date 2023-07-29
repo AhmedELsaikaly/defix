@@ -24,6 +24,7 @@ function App() {
 
   useEffect(() => {
     const direction = currentLanguage === 'en' ? 'ltr' : 'rtl';
+    document.dir = direction;
     document.body.dir = direction;
     document.documentElement.setAttribute('lang', currentLanguage);
   }, []);

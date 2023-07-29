@@ -44,6 +44,11 @@ html[lang='en'] {
   body {
     direction: ltr;
   }
+  &:hover {
+    svg {
+      transform: none;
+    }
+  }
 }
 
 /* ========================================== 

@@ -20,6 +20,7 @@ const Home = () => {
         <Header bodyData={data} />
         <AboutSection aboutSection={data} />
         <Services
+          withMoreBtn={true}
           selectedTab={activeTab}
           setSelectedTab={id => setActiveTab(id)}
           serviceData={{
