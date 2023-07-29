@@ -1,9 +1,15 @@
 import { Container } from 'reactstrap';
 import styles from './index.module.scss';
 import { Link } from 'react-router-dom';
-import { importImageByProcessEnv } from '../../utils';
+import { getValueByLang, importImageByProcessEnv } from '../../utils';
 import { InstaIcon, SnapShatIcon, TwitterIcon } from '../icons';
-const Footer = () => {
+import { BiLang } from '../../components';
+import { FooterData } from '../../models';
+interface FooterDataProps {
+  footerData: FooterData;
+}
+
+const Footer = ({ footerData }: FooterDataProps) => {
   return (
     <footer className={styles.footer}>
       <Container>
@@ -16,26 +22,36 @@ const Footer = () => {
                 className='img-full'
                 alt='ديفكس'
                 title='ديفكس'
-                src={importImageByProcessEnv('logo.png')}
+                src={getValueByLang(footerData?.logoAr, footerData?.logoEn)}
               />
             </Link>
-            <p>Deffix وجهتك الأولى في عالم الإنشاءات</p>
+            <p>
+              <BiLang
+                arValue={footerData?.footerAr}
+                enValue={footerData?.footerEn}
+              />
+            </p>
           </div>
           <div className={styles.endFooterSection}>
-            <p>تابعنا على</p>
             <ul className={styles.socialList}>
               <li>
-                <a href='#' title='تابع ديفكس عبر تويتر'>
+                <a href={`${footerData?.twitter}`}>
                   <TwitterIcon />
                 </a>
               </li>
               <li>
-                <a href='#' title='تابع ديفكس عبر سنابشات'>
+                <a
+                  href={`${footerData?.snapChat}`}
+                  title='تابع ديفكس عبر سنابشات'
+                >
                   <SnapShatIcon />
                 </a>
               </li>
               <li>
-                <a href='#' title='تابع ديفكس عبر انستقرام'>
+                <a
+                  href={`${footerData?.twitter}`}
+                  title='تابع ديفكس عبر انستقرام'
+                >
                   <InstaIcon />
                 </a>
               </li>

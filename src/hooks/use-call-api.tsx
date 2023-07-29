@@ -4,10 +4,10 @@ import { apiEndPoints } from './../constants/api-end-points';
 type Keys = keyof typeof apiEndPoints;
 type ApiEndPointsValues = (typeof apiEndPoints)[Keys];
 
-export const useCallApi = (apiEndPoint: ApiEndPointsValues) => {
+export function useCallApi<TResponse>(apiEndPoint: ApiEndPointsValues) {
   const [isLoading, setIsLoading] = useState<boolean>();
   const [error, setError] = useState<string>();
-  const [data, setData] = useState<Record<string, string | object | []>>();
+  const [data, setData] = useState<TResponse>();
 
   useEffect(() => {
     const callApi = async () => {
@@ -32,4 +32,4 @@ export const useCallApi = (apiEndPoint: ApiEndPointsValues) => {
     error,
     data,
   };
-};
+}

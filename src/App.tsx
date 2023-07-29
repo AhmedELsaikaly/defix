@@ -7,6 +7,7 @@ import { useCallApi, useLang } from './hooks';
 import { ROUTES } from './constants';
 import './styles/app.scss';
 import 'swiper/css/pagination';
+import { FooterData, HeaderData } from './models';
 
 function App() {
   const content = useRoutes(routes);
@@ -25,16 +26,16 @@ function App() {
     });
   }, []);
 
-  // const { data, isLoading } = useCallApi('/header');
-  // const { data: footerData, isLoading: footerLoading } = useCallApi('/footer');
-  console.log(!match, 'matchmatch');
+  const { data: headerData, isLoading } = useCallApi<HeaderData>('/header');
+  const { data: footerData, isLoading: footerLoading } =
+    useCallApi<FooterData>('/footer');
   return (
     <div className='App'>
-      <PagesWrapper loading={false}>
-        <TopNav />
+      <PagesWrapper loading={isLoading || footerLoading}>
+        <TopNav headerData={headerData} />
         <Navbar isWhiteBg={!match} />
         {content}
-        <Footer />
+        <Footer footerData={footerData} />
       </PagesWrapper>
     </div>
   );
