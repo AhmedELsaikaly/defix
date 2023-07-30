@@ -1,6 +1,24 @@
 import { IBusinessItem, IServiceItem } from './services';
 
 export interface HeaderData {
+  TimesOfWorkAr: string;
+  TimesOfWorkEn: string;
+  TitleOurConnectWithUsEn: string;
+  TitleOurConnectWithUsAr: string;
+  darkLogoEn: string;
+  darkLogoAr: string;
+  TitleOurAchievementsEn: string;
+  TitleOurAchievementsAr: string;
+  TitleHomeAr: string;
+  TitleHomeEn: string;
+  TitleAboutUsAr: string;
+  TitleAboutUsEr: string;
+  TitleOurServicesAr: string;
+  TitleOurServicesEn: string;
+  TitleOurProjectsAr: string;
+  TitleOurProjectsEn: string;
+  TitleOurClientsAr: string;
+  TitleOurClientsEn: string;
   email: string;
   logoAr: string;
   logoEn: string;
@@ -19,6 +37,14 @@ export interface FooterData {
 
 // models of body request
 export interface BodySliderData {
+  TitleAboutUsAr: string;
+  TitleAboutUsEr: string;
+  TitleOurClientsAr: string;
+  TitleOurClientsEn: string;
+  TitleOurProjectsAr: string;
+  TitleOurProjectsEn: string;
+  TitleCvEn: string;
+  TitleCvAr: string;
   titleSliderAr: string;
   titleSliderEn: string;
   sliderTextAr: string;
@@ -26,7 +52,10 @@ export interface BodySliderData {
   cvAr: string;
   cvEn: string;
   sliders: Slider[];
+
   aboutHome: AboutHome[];
+  TitleOurServicesAr: string;
+  TitleOurServicesEn: string;
   descriptionOurServicesAr: string;
   descriptionOurServicesEn: string;
   businessHome: IBusinessItem[];
@@ -108,4 +137,100 @@ export interface SayAboutU {
   status: string;
   created_at: string;
   updated_at: string;
+}
+
+// TYPE DATA OF ABOUT
+export interface About {
+  titleAboutUsAr: string
+  titleAboutUsEn: string
+  descriptionAboutUsAr: string
+  descriptionAboutUsEn: string
+  whyDiffixEn: WhyDiffixEn
+  vision: Vision
+  goals: Goals
+  commitment: Commitment
+}
+
+export interface WhyDiffixEn {
+  titleWhyDiffixAr: string
+  titleWhyDiffixEn: string
+  descriptionWhyDiffixAr: string
+  descriptionWhyDiffixEn: string
+  aboutWhyDiffix: AboutWhyDiffix[]
+}
+
+export interface AboutWhyDiffix {
+  id: number
+  title_ar: string
+  title_en: string
+  description_ar: string
+  description_en: string
+  image: string
+  show: string
+  status: string
+  created_at: string
+  updated_at: string
+}
+
+export interface Vision {
+  titleVisionAr: string
+  titleVisionEn: string
+  descriptionVisionAr: string
+  descriptionVisionEn: string
+  aboutVision: AboutVision[]
+}
+
+export interface AboutVision {
+  id: number
+  title_ar: string
+  title_en: string
+  description_ar: string
+  description_en: string
+  image: string
+  show: string
+  status: string
+  created_at: string
+  updated_at: string
+}
+
+export interface Goals {
+  titleGoalsAr: string
+  titleGoalsEn: string
+  descriptionGoalsAr: string
+  descriptionGoalsEn: string
+  aboutGoals: AboutGoal[]
+}
+
+export interface AboutGoal {
+  id: number
+  title_ar: string
+  title_en: string
+  description_ar: string
+  description_en: string
+  image: string
+  show: string
+  status: string
+  created_at: string
+  updated_at: string
+}
+
+export interface Commitment {
+  titleCommitmentAr: string
+  titleCommitmentEn: string
+  descriptionCommitmentAr: string
+  descriptionCommitmentEn: string
+  aboutCommitment: AboutCommitment[]
+}
+
+export interface AboutCommitment {
+  id: number
+  title_ar: string
+  title_en: string
+  description_ar: string
+  description_en: string
+  image: string
+  show: string
+  status: string
+  created_at: string
+  updated_at: string
 }

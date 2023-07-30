@@ -41,7 +41,7 @@ function App() {
       <PagesWrapper loading={isLoading || footerLoading}>
         <div>
           <TopNav headerData={headerData} />
-          <Navbar isWhiteBg={!match} />
+          <Navbar isWhiteBg={!match} navBarData={headerData} />
         </div>
 
         {content}

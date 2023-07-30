@@ -1,4 +1,6 @@
 export interface IServices {
+  TitleOurServicesAr: string,
+  TitleOurServicesEn: string
   descriptionOurServicesAr: string;
   descriptionOurServicesEn: string;
   business: IBusinessItem[];

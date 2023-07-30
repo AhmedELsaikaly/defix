@@ -11,8 +11,9 @@ import { BodySliderData } from '../../models';
 import { useState } from 'react';
 
 const Home = () => {
-  const { data, isLoading } = useCallApi<BodySliderData>('/body');
   const [activeTab, setActiveTab] = useState<string>('construction');
+  const { data, isLoading } = useCallApi<BodySliderData>('/body');
+  console.log(data, 'datadata');
 
   return (
     <div>
@@ -22,12 +23,14 @@ const Home = () => {
         <Services
           withMoreBtn={true}
           selectedTab={activeTab}
-          setSelectedTab={id => setActiveTab(id)}
+          setSelectedTab={(id) => setActiveTab(id)}
           serviceData={{
             services: data?.servicesHome,
             business: data?.businessHome,
             descriptionOurServicesAr: data?.descriptionOurServicesAr,
             descriptionOurServicesEn: data?.descriptionOurServicesEn,
+            TitleOurServicesAr: data?.TitleOurServicesAr,
+            TitleOurServicesEn: data?.TitleOurServicesEn,
           }}
         />
         <Statistics />

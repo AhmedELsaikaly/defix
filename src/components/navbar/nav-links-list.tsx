@@ -1,38 +1,66 @@
 import { MouseEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../constants';
-import { importImageByProcessEnv } from '../../utils';
+import { getValueByLang, importImageByProcessEnv } from '../../utils';
 import Button from '../button';
 import styles from './index.module.scss';
 import { Menu } from '../icons';
 import ChangeLanguage from '../change-language';
+import { HeaderData } from '../../models';
+import BiLang from '../bi-lang-comp';
 
 interface NavLinksListProps {
   isSideMenu?: boolean;
   isChangeLangPrimary?: boolean;
   onMenuButtonClick?: () => void;
   setSideMenuOpen?: (opened: boolean) => void;
+  data?: HeaderData;
 }
-
-const navLinks = [
-  { nameAr: 'الرئيسية', nameEn: 'home', targetSection: 'home' },
-  { nameAr: 'من نحن', nameEn: 'About us', targetSection: 'about' },
-  { nameAr: 'خدماتنا', nameEn: 'Services', targetSection: 'services' },
-  { nameAr: 'إنجازاتنا', nameEn: 'home', targetSection: 'projects' },
-  { nameAr: 'عملاؤنا', nameEn: 'home', targetSection: 'clients' },
-];
 
 export const NavLinksList = ({
   isSideMenu = false,
   onMenuButtonClick,
   setSideMenuOpen,
   isChangeLangPrimary = false,
+  data,
 }: NavLinksListProps) => {
   const closeSideMenu = () => {
     if (setSideMenuOpen) {
       setSideMenuOpen(false);
     }
   };
+  const navLinks = [
+    {
+      nameAr: data?.TitleHomeAr,
+      nameEn: data?.TitleHomeEn,
+      targetSection: 'home',
+    },
+    {
+      nameAr: data?.TitleAboutUsAr,
+      nameEn: data?.TitleAboutUsEr,
+      targetSection: 'about',
+    },
+    {
+      nameAr: data?.TitleOurServicesAr,
+      nameEn: data?.TitleOurServicesEn,
+      targetSection: 'services',
+    },
+    {
+      nameAr: data?.TitleOurProjectsAr,
+      nameEn: data?.TitleOurProjectsEn,
+      targetSection: 'projects',
+    },
+    {
+      nameAr: data?.TitleOurClientsAr,
+      nameEn: data?.TitleOurClientsEn,
+      targetSection: 'clients',
+    },
+    {
+      nameAr: data?.TitleOurAchievementsAr,
+      nameEn: data?.TitleOurAchievementsEn,
+      targetSection: 'achievement',
+    },
+  ];
 
   const [activeLinkItem, setActiveLinkItem] = useState<string>('home');
   const handleNavLinkClick = (event: MouseEvent, targetSectionId: string) => {
@@ -60,16 +88,15 @@ export const NavLinksList = ({
         <img
           className='img-full'
           alt='ديفكس'
-          title='ديفكس'
-          src={importImageByProcessEnv('logo.png')}
+          src={getValueByLang(data?.darkLogoAr, data?.darkLogoEn)}
         />
       </Link>
 
       <ul className={styles.linksWrapper}>
-        {navLinks.map(navLinkItem => (
+        {navLinks.map((navLinkItem) => (
           <li key={navLinkItem.targetSection}>
             <Link
-              onClick={e => handleNavLinkClick(e, navLinkItem.targetSection)}
+              onClick={(e) => handleNavLinkClick(e, navLinkItem.targetSection)}
               to={`#${navLinkItem.targetSection}`}
               className={`${
                 activeLinkItem === navLinkItem.targetSection
@@ -77,7 +104,7 @@ export const NavLinksList = ({
                   : ''
               }`}
             >
-              {navLinkItem.nameAr}
+              {getValueByLang(navLinkItem.nameAr, navLinkItem.nameEn)}
             </Link>
           </li>
         ))}
@@ -95,7 +122,10 @@ export const NavLinksList = ({
 
         <Link to='#' className={styles.ctaWrap}>
           <Button onClick={closeSideMenu} type='outlined-white' fullRadius>
-            تواصل معنا
+            <BiLang
+              arValue={data?.TitleOurConnectWithUsAr}
+              enValue={data?.TitleOurConnectWithUsEn}
+            />
           </Button>
         </Link>
       </div>

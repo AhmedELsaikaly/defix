@@ -6,9 +6,11 @@ import {
   SectionsTitle,
   SectionsWrapper,
 } from '../../components';
-import { importImageByProcessEnv } from '../../utils';
+import { getValueByLang, importImageByProcessEnv } from '../../utils';
 import styles from './index.module.scss';
 import { useSearchParams } from 'react-router-dom';
+import { useCallApi } from '../../hooks';
+import { About } from '../../models';
 
 const successPoints = [
   {
@@ -39,6 +41,7 @@ const successPoints = [
 
 const AboutUs = () => {
   const [searchParams] = useSearchParams();
+  const { data, isLoading } = useCallApi<About>('/about');
 
   useEffect(() => {
     if (searchParams && searchParams.get('focused')) {
@@ -54,25 +57,38 @@ const AboutUs = () => {
   return (
     <div>
       <PagesHeader
-        title='خدمات صيانة المطاعم'
-        description='مرحبًا بكم في صفحة خدمات صيانة المطاعم الخاصة ب Deffix! ندرك في Deffix أهمية الحفاظ على مطعمك في حالة ممتازة لضمان تجربة تناول طعام سلسة لعملائك. يعمل فريقنا المتمرس من المتخصصين في الصيانة على تقديم خدمات صيانة موثوقة وفعالة تلبي احتياجات مطعمك الفريدة. سواء كانت خدمات صيانة وقائية منتظمة أو إصلاحات للمعدات أو ترقيات للمرافق، نحن في خدمتك.تشمل خدمات الصيانة لدى Deffix'
+        title={getValueByLang(data?.titleAboutUsAr, data?.titleAboutUsEn)}
+        description={getValueByLang(
+          data?.descriptionAboutUsAr,
+          data?.descriptionAboutUsEn
+        )}
       />
       <SectionsWrapper className={styles.sectionItem} id='why-defix'>
         <Container>
           <div className={styles.aboutTopSection}>
-            <SectionsTitle text='لماذا Deffix؟' />
+            <SectionsTitle
+              text={getValueByLang(
+                data?.whyDiffixEn?.titleWhyDiffixAr,
+                data?.whyDiffixEn?.titleWhyDiffixEn
+              )}
+            />
             <p data-aos-delay='200' data-aos='fade-up'>
-              اختيار ديفكس لخدمات البناء يأتي مع العديد من الفوائد والمزايا التي
-              تميزنا عن المنافسة. فيما يلي بعض الأسباب المقنعة لاختيار ديفكس:
+              {getValueByLang(
+                data?.whyDiffixEn?.descriptionWhyDiffixAr,
+                data?.whyDiffixEn?.descriptionWhyDiffixEn
+              )}
             </p>
           </div>
-          {successPoints.map((item, index) => (
+          {data?.whyDiffixEn?.aboutWhyDiffix?.map((item, index) => (
             <ContentWithImageComp
               key={index}
               index={index}
-              description={item.description}
-              imgLink={item.imageLink}
-              title={item.title}
+              description={getValueByLang(
+                item?.description_ar,
+                item?.description_en
+              )}
+              imgLink={item?.image}
+              title={getValueByLang(item?.title_ar, item?.title_en)}
             />
           ))}
         </Container>
@@ -81,22 +97,30 @@ const AboutUs = () => {
       <SectionsWrapper className={styles.sectionItem} id='vision'>
         <Container>
           <div className={styles.aboutTopSection}>
-            <SectionsTitle text='رؤيتنا' />
+            <SectionsTitle
+              text={getValueByLang(
+                data?.vision?.titleVisionAr,
+                data?.vision?.titleVisionEn
+              )}
+            />
 
             <p data-aos-delay='200' data-aos='fade-up'>
-              ندرك في Deffix أن كل مشروع إنشائي عبارة عن قطعة فريدة طلب تخطيطًا
-              دقيقًا وحرفية ماهرة واهتمامًا لغاَ بأدق التفاصيل. سواء كنت تبدأ
-              مشروعًا سكنيًا أو تجاريًا أو صناعيًا، فإن فريقنا من المحترفين هنا
-              لتحويل رؤيتك إلى حقيقة.
+              {getValueByLang(
+                data?.vision?.descriptionVisionAr,
+                data?.vision?.descriptionVisionEn
+              )}
             </p>
           </div>
-          {successPoints.map((item, index) => (
+          {data?.vision?.aboutVision?.map((item, index) => (
             <ContentWithImageComp
               key={index}
               index={index}
-              description={item.description}
-              imgLink={item.imageLink}
-              title={item.title}
+              description={getValueByLang(
+                item?.description_ar,
+                item?.description_en
+              )}
+              imgLink={item?.image}
+              title={getValueByLang(item?.title_ar, item?.title_en)}
             />
           ))}
         </Container>
@@ -105,21 +129,30 @@ const AboutUs = () => {
       <SectionsWrapper id='goals' className={styles.sectionItem}>
         <Container>
           <div className={styles.aboutTopSection}>
-            <SectionsTitle text='أهدافنا' />
+            <SectionsTitle
+              text={getValueByLang(
+                data?.goals?.titleGoalsAr,
+                data?.goals?.titleGoalsEn
+              )}
+            />
 
             <p data-aos-delay='200' data-aos='fade-up'>
-              نحن ملتزمون بتقديم خدمات بناء استثنائية وتنفيذ مشاريع عالية الجودة
-              تتجاوز توقعات عملائنا. هدفنا هو أن نكون شركة بناء رائدة معروفة
-              بالاحترافية والخبرة والتفاني في التميز.
+              {getValueByLang(
+                data?.goals?.descriptionGoalsAr,
+                data?.goals?.descriptionGoalsEn
+              )}
             </p>
           </div>
-          {successPoints.map((item, index) => (
+          {data?.goals?.aboutGoals?.map((item, index) => (
             <ContentWithImageComp
               key={index}
               index={index}
-              description={item.description}
-              imgLink={item.imageLink}
-              title={item.title}
+              description={getValueByLang(
+                item?.description_ar,
+                item?.description_en
+              )}
+              imgLink={item.image}
+              title={getValueByLang(item?.title_ar, item?.title_en)}
             />
           ))}
         </Container>
@@ -127,21 +160,30 @@ const AboutUs = () => {
       <SectionsWrapper id='commitments' className={styles.sectionItem}>
         <Container>
           <div className={styles.aboutTopSection}>
-            <SectionsTitle text='التزاماتنا' />
+            <SectionsTitle
+              text={getValueByLang(
+                data?.commitment?.titleCommitmentAr,
+                data?.commitment?.titleCommitmentEn
+              )}
+            />
 
             <p data-aos-delay='200' data-aos='fade-up'>
-              نحن ملتزمون بتقديم خدمات بناء استثنائية وتنفيذ مشاريع عالية الجودة
-              تتجاوز توقعات عملائنا. هدفنا هو أن نكون شركة بناء رائدة معروفة
-              بالاحترافية والخبرة والتفاني في التميز.
+              {getValueByLang(
+                data?.commitment?.descriptionCommitmentAr,
+                data?.commitment?.descriptionCommitmentEn
+              )}
             </p>
           </div>
-          {successPoints.map((item, index) => (
+          {data?.commitment?.aboutCommitment?.map((item, index) => (
             <ContentWithImageComp
               key={index}
               index={index}
-              description={item.description}
-              imgLink={item.imageLink}
-              title={item.title}
+              description={getValueByLang(
+                item?.description_ar,
+                item?.description_en
+              )}
+              imgLink={item?.image}
+              title={getValueByLang(item?.title_ar, item?.title_en)}
             />
           ))}
         </Container>

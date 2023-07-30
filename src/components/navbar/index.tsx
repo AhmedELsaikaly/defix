@@ -4,12 +4,14 @@ import { NavLinksList } from './nav-links-list';
 import { SideMenu } from './side-menu';
 import styles from './index.module.scss';
 import { Overlay } from './overlay';
+import { HeaderData } from '../../models';
 
 interface NavbarProps {
   isWhiteBg?: boolean;
+  navBarData: HeaderData;
 }
 
-const Navbar = ({ isWhiteBg = false }: NavbarProps) => {
+const Navbar = ({ isWhiteBg = false, navBarData }: NavbarProps) => {
   const navRef = useRef<HTMLElement>(null);
   const [isSideMenuOpened, setIsSideMenuOpened] = useState<boolean>(false);
   const [isSticky, setIsSticky] = useState<boolean>(false);
@@ -37,6 +39,7 @@ const Navbar = ({ isWhiteBg = false }: NavbarProps) => {
       >
         <Container>
           <NavLinksList
+            data={navBarData}
             isChangeLangPrimary={isWhiteBg}
             onMenuButtonClick={() => setIsSideMenuOpened(true)}
           />

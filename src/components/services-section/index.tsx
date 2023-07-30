@@ -67,15 +67,24 @@ const Services = ({
   onDetailsBtnClick,
   withDetailsBtn,
 }: ServicesProp) => {
+  console.log(serviceData?.services, 'serviceDataserviceDataserviceData');
+  console.log(serviceData?.business, 'serviceData?.business');
+
   const navigate = useNavigate();
-  console.log(onDetailsBtnClick, 'onDetailsBtnClickonDetailsBtnClick');
   return (
     <SectionsWrapper id='services' className={styles.servicesSection}>
       <Container>
-        <SectionsTitle text='خدماتنا' />
+        <SectionsTitle
+          text={getValueByLang(
+            serviceData?.TitleOurServicesAr,
+            serviceData?.TitleOurServicesEn
+          )}
+        />
         <Subtext
-          text='  تقدم شركة ديفكس خدمات احترافية وتلبية احتياجات سوق العمل في مختلف
-          التخصصات'
+          text={getValueByLang(
+            serviceData?.descriptionOurServicesAr,
+            serviceData?.descriptionOurServicesEn
+          )}
         />
 
         <div
@@ -89,7 +98,10 @@ const Services = ({
             tabs={[
               {
                 id: 'construction',
-                name: 'الإنشاءات',
+                name: getValueByLang(
+                  serviceData?.services,
+                  serviceData?.descriptionOurServicesEn
+                ),
                 content: (
                   <ServiceCards
                     withDetailsBtn={withDetailsBtn}

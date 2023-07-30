@@ -30,7 +30,7 @@ export const Header = ({ bodyData }: TopBodySliderProps) => {
         noSwiping={true}
         noSwipingClass='swiper-no-swiping'
       >
-        {bodyData?.sliders.map(item => (
+        {bodyData?.sliders.map((item) => (
           <SwiperSlide key={item?.id}>
             <div
               className={`${styles.headerItem} bg-cover`}
@@ -68,11 +68,15 @@ export const Header = ({ bodyData }: TopBodySliderProps) => {
                     data-aos-delay='250'
                   >
                     <a
-                      title='تحميل الملف الشخصي'
                       href={getValueByLang(bodyData?.cvAr, bodyData?.cvEn)}
                       target='_blank'
                     >
-                      <Button type='primary'>تحميل الملف الشخصي</Button>
+                      <Button type='primary'>
+                        {getValueByLang(
+                          bodyData?.TitleCvAr,
+                          bodyData?.TitleCvEn
+                        )}
+                      </Button>
                     </a>
                   </div>
                 </div>

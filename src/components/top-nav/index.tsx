@@ -1,5 +1,6 @@
 import { Container } from 'reactstrap';
 import { HeaderData } from '../../models';
+import BiLang from '../bi-lang-comp';
 import { MailIcon, WhatsappIcon } from '../icons';
 import styles from './index.module.scss';
 
@@ -13,15 +14,19 @@ const TopNav = ({ headerData }: TopNavProps) => {
         <div className={styles.topNavInnerWrapper}>
           <div className={styles.topNavOpenDays}>
             <p>
-              <span>الأحد - الخميس</span>
-              <span>9:00 ص - 5:00 م</span>
+              <span>
+                <BiLang
+                  arValue={headerData?.TimesOfWorkAr}
+                  enValue={headerData?.TimesOfWorkEn}
+                />
+              </span>
             </p>
           </div>
           <ul className={styles.topNavContact}>
             <li>
               <a
-                href={`mailto:${headerData?.whatsApp}`}
-                title='تواصل مع ديفكس عبرالواتسب'
+                href={`https://api.whatsapp.com/send/?phone=${headerData?.whatsApp}`}
+                target='_blank'
               >
                 <span className={styles.text}>{headerData?.whatsApp}</span>
                 <span>
@@ -30,10 +35,7 @@ const TopNav = ({ headerData }: TopNavProps) => {
               </a>
             </li>
             <li>
-              <a
-                href={`mailto:${headerData?.email}`}
-                title='تواصل مع ديفكس عبر البريد الإلكتروني'
-              >
+              <a href={`mailto:${headerData?.email}`} target='_blank'>
                 <span className={styles.text}>{headerData?.email}</span>
                 <span>
                   <MailIcon />
