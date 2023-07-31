@@ -8,7 +8,7 @@ export const Statistics = () => {
   const { isSectionVisible, targetSectionRef } = useSectionVisibility();
   return (
     <section
-      id='statistics'
+      id='achievement'
       ref={targetSectionRef}
       className={styles.statistics}
       data-aos='fade-up'

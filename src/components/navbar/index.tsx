@@ -39,8 +39,8 @@ const Navbar = ({ isWhiteBg = false, navBarData }: NavbarProps) => {
       >
         <Container>
           <NavLinksList
+            isWhiteBg={isWhiteBg}
             data={navBarData}
-            isChangeLangPrimary={isWhiteBg}
             onMenuButtonClick={() => setIsSideMenuOpened(true)}
           />
         </Container>

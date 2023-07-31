@@ -8,12 +8,17 @@ import {
   Testimonials,
 } from './components';
 import { BodySliderData } from '../../models';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Home = () => {
-  const [activeTab, setActiveTab] = useState<string>('construction');
+  const [activeTab, setActiveTab] = useState<number>();
   const { data, isLoading } = useCallApi<BodySliderData>('/body');
-  console.log(data, 'datadata');
+
+  useEffect(() => {
+    if (data) {
+      setActiveTab(data?.businesServicesHome?.[0]?.id ?? 1);
+    }
+  }, [data]);
 
   return (
     <div>
@@ -23,14 +28,13 @@ const Home = () => {
         <Services
           withMoreBtn={true}
           selectedTab={activeTab}
-          setSelectedTab={(id) => setActiveTab(id)}
+          setSelectedTab={id => setActiveTab(id)}
           serviceData={{
-            services: data?.servicesHome,
-            business: data?.businessHome,
-            descriptionOurServicesAr: data?.descriptionOurServicesAr,
-            descriptionOurServicesEn: data?.descriptionOurServicesEn,
+            services: data?.businesServicesHome,
             TitleOurServicesAr: data?.TitleOurServicesAr,
             TitleOurServicesEn: data?.TitleOurServicesEn,
+            descriptionOurServicesAr: data?.descriptionOurServicesAr,
+            descriptionOurServicesEn: data?.descriptionOurServicesEn,
           }}
         />
         <Statistics />

@@ -1,23 +1,19 @@
-export interface IServices {
-  TitleOurServicesAr: string,
-  TitleOurServicesEn: string
+export interface IServiceSectionData {
+  TitleOurServicesAr: string;
+  TitleOurServicesEn: string;
   descriptionOurServicesAr: string;
   descriptionOurServicesEn: string;
-  business: IBusinessItem[];
-  services: IServiceItem[];
+  services: IService[];
 }
 
-export interface IBusinessItem {
+export interface IService {
   id: number;
   title_ar: string;
   title_en: string;
   status: string;
   created_at: string;
   updated_at: string;
-  //TODO: needed keys
-  icon: string;
-  description_ar: string;
-  description_en: string;
+  services_home: IServiceItem[];
 }
 
 export interface IServiceItem {
@@ -34,4 +30,12 @@ export interface IServiceItem {
   updated_at: string;
   description_inside_details_ar: string;
   description_inside_details_en: string;
+}
+
+export interface IServiceDetails {
+  titleOurServicesAr: string;
+  titleOurServicesEn: string;
+  descriptionOurServicesAr: string;
+  descriptionOurServicesEn: string;
+  business: IService[];
 }

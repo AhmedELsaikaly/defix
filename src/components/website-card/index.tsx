@@ -1,5 +1,4 @@
 import MoreBtnLink from '../more-btn-link';
-import { IBusinessItem } from '../../models/services';
 import styles from './index.module.scss';
 
 interface WebsiteCardProps {
@@ -33,7 +32,7 @@ const WebsiteCard = ({
         <div className={`${styles.icon} ${iconHaveBg ? styles.withBg : ''}`}>
           <img
             loading='lazy'
-            className='img-full img-bg'
+            className='img-full'
             src={iconLink}
             title={title}
             alt={title}

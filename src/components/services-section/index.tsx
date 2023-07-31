@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'reactstrap';
 import WebsiteCard from '../website-card';
 import SectionsWrapper from '../sections-wrapper';
@@ -8,22 +7,21 @@ import Button from '../button';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../constants';
 import Subtext from '../subtext';
-import { ServicesItem } from '../../models';
-import styles from './index.module.scss';
 import { getValueByLang } from '../../utils';
-import { IBusinessItem, IServiceItem, IServices } from '../../models/services';
+import { IServiceItem, IServiceSectionData } from '../../models/services';
+import styles from './index.module.scss';
 
 interface ServicesProp {
   withMoreBtn?: boolean;
-  selectedTab?: string;
-  serviceData?: IServices;
-  setSelectedTab: (tabId: string) => void;
-  onDetailsBtnClick?: (itemData: IBusinessItem) => void;
+  selectedTab?: number;
+  serviceData?: IServiceSectionData;
+  setSelectedTab: (tabId: number) => void;
+  onDetailsBtnClick?: (itemData: IServiceItem) => void;
   withDetailsBtn?: boolean;
 }
 
 interface ServiceCardsProps {
-  servicesDataList: Array<IBusinessItem | IServiceItem>;
+  servicesDataList: Array<IServiceItem>;
   moreBtnLink?: string;
   onDetailsBtnClick?: (itemData: IServiceItem) => void;
   withDetailsBtn?: boolean;
@@ -36,7 +34,7 @@ const ServiceCards = ({
 }: ServiceCardsProps) => {
   return (
     <Row className='gy-4 justify-content-center'>
-      {servicesDataList?.map((item: IBusinessItem | IServiceItem) => (
+      {servicesDataList?.map((item: IServiceItem) => (
         <Col xl='4' lg='6' key={item.id}>
           <WebsiteCard
             withDetailsBtn={withDetailsBtn}
@@ -67,10 +65,8 @@ const Services = ({
   onDetailsBtnClick,
   withDetailsBtn,
 }: ServicesProp) => {
-  console.log(serviceData?.services, 'serviceDataserviceDataserviceData');
-  console.log(serviceData?.business, 'serviceData?.business');
-
   const navigate = useNavigate();
+
   return (
     <SectionsWrapper id='services' className={styles.servicesSection}>
       <Container>
@@ -95,32 +91,19 @@ const Services = ({
           <Tabs
             activeTab={selectedTab}
             setSelectedTab={setSelectedTab}
-            tabs={[
-              {
-                id: 'construction',
-                name: getValueByLang(
-                  serviceData?.services,
-                  serviceData?.descriptionOurServicesEn
-                ),
+            tabs={
+              serviceData?.services?.map(item => ({
+                id: item.id,
+                name: getValueByLang(item.title_ar, item.title_en),
                 content: (
                   <ServiceCards
                     withDetailsBtn={withDetailsBtn}
                     onDetailsBtnClick={onDetailsBtnClick}
-                    servicesDataList={serviceData?.services}
+                    servicesDataList={item.services_home}
                   />
                 ),
-              },
-              {
-                id: 'maintenance',
-                name: 'الصيانة',
-                content: (
-                  <ServiceCards
-                    withDetailsBtn={withDetailsBtn}
-                    servicesDataList={serviceData?.business}
-                  />
-                ),
-              },
-            ]}
+              })) ?? []
+            }
           />
         </div>
         {withMoreBtn && (

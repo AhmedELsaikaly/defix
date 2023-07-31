@@ -1,5 +1,5 @@
 import { MouseEvent, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useMatch, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../constants';
 import { getValueByLang, importImageByProcessEnv } from '../../utils';
 import Button from '../button';
@@ -15,15 +15,19 @@ interface NavLinksListProps {
   onMenuButtonClick?: () => void;
   setSideMenuOpen?: (opened: boolean) => void;
   data?: HeaderData;
+  isWhiteBg?: boolean;
 }
 
 export const NavLinksList = ({
   isSideMenu = false,
   onMenuButtonClick,
   setSideMenuOpen,
-  isChangeLangPrimary = false,
   data,
+  isWhiteBg = false,
 }: NavLinksListProps) => {
+  const match = useMatch(ROUTES.home);
+  const navigate = useNavigate();
+
   const closeSideMenu = () => {
     if (setSideMenuOpen) {
       setSideMenuOpen(false);
@@ -37,7 +41,7 @@ export const NavLinksList = ({
     },
     {
       nameAr: data?.TitleAboutUsAr,
-      nameEn: data?.TitleAboutUsEr,
+      nameEn: data?.TitleAboutUsEn,
       targetSection: 'about',
     },
     {
@@ -68,6 +72,9 @@ export const NavLinksList = ({
     setActiveLinkItem(targetSectionId);
 
     const targetSection = document.getElementById(targetSectionId);
+    if (!match) {
+      navigate(ROUTES.home);
+    }
     if (targetSection) {
       targetSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); // Scroll to the target section
       closeSideMenu();
@@ -88,15 +95,19 @@ export const NavLinksList = ({
         <img
           className='img-full'
           alt='ديفكس'
-          src={getValueByLang(data?.darkLogoAr, data?.darkLogoEn)}
+          src={
+            isWhiteBg
+              ? getValueByLang(data?.darkLogoAr, data?.whiteLogoEn)
+              : getValueByLang(data?.darkLogoAr, data?.darkLogoEn)
+          }
         />
       </Link>
 
       <ul className={styles.linksWrapper}>
-        {navLinks.map((navLinkItem) => (
+        {navLinks.map(navLinkItem => (
           <li key={navLinkItem.targetSection}>
             <Link
-              onClick={(e) => handleNavLinkClick(e, navLinkItem.targetSection)}
+              onClick={e => handleNavLinkClick(e, navLinkItem.targetSection)}
               to={`#${navLinkItem.targetSection}`}
               className={`${
                 activeLinkItem === navLinkItem.targetSection
@@ -110,7 +121,7 @@ export const NavLinksList = ({
         ))}
       </ul>
       <div className={styles.changeLangCtaWrap}>
-        {!isSideMenu && <ChangeLanguage isPrimary={isChangeLangPrimary} />}
+        {!isSideMenu && <ChangeLanguage isPrimary={isWhiteBg} />}
         {!isSideMenu && (
           <button
             className={`${styles.menuToggler} menu-toggler`}

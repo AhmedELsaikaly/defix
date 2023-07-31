@@ -4,9 +4,9 @@ import styles from './index.module.scss';
 import Button from '../button';
 
 interface TabsProps {
-  tabs: { id: string; name: string; content: ReactNode | ReactNode[] }[];
-  setSelectedTab: (tabId: string) => void;
-  activeTab: string;
+  tabs: { id: number; name: string; content: ReactNode | ReactNode[] }[];
+  setSelectedTab: (tabId: number) => void;
+  activeTab: number;
 }
 
 const Tabs = ({ tabs, setSelectedTab, activeTab }: TabsProps) => {

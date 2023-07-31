@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Container } from 'reactstrap';
 import {
   ContentWithImageComp,
@@ -6,56 +5,29 @@ import {
   SectionsTitle,
   SectionsWrapper,
 } from '../../components';
-import { getValueByLang, importImageByProcessEnv } from '../../utils';
+import { getValueByLang } from '../../utils';
 import styles from './index.module.scss';
 import { useSearchParams } from 'react-router-dom';
 import { useCallApi } from '../../hooks';
 import { About } from '../../models';
-
-const successPoints = [
-  {
-    title: 'الخبرة والتجربة',
-    description:
-      'تفتخر Deffix بفريق من المحترفين ذوي المهارات العالية والخبرة الواسعة في صناعة البناء. يتمتع مهندسون ومدراء المشاريع والحرفيون بالخبرة اللازمة للتعامل مع مشاريع ذات أي مقياس وتعقيد.',
-    imageLink: importImageByProcessEnv('service-1.png'),
-  },
-  {
-    title: 'الخبرة والتجربة',
-    description:
-      'تفتخر Deffix بفريق من المحترفين ذوي المهارات العالية والخبرة الواسعة في صناعة البناء. يتمتع مهندسون ومدراء المشاريع والحرفيون بالخبرة اللازمة للتعامل مع مشاريع ذات أي مقياس وتعقيد.',
-    imageLink: importImageByProcessEnv('service-1.png'),
-  },
-  {
-    title: 'الخبرة والتجربة',
-    description:
-      'تفتخر Deffix بفريق من المحترفين ذوي المهارات العالية والخبرة الواسعة في صناعة البناء. يتمتع مهندسون ومدراء المشاريع والحرفيون بالخبرة اللازمة للتعامل مع مشاريع ذات أي مقياس وتعقيد.',
-    imageLink: importImageByProcessEnv('service-1.png'),
-  },
-  {
-    title: 'الخبرة والتجربة',
-    description:
-      'تفتخر Deffix بفريق من المحترفين ذوي المهارات العالية والخبرة الواسعة في صناعة البناء. يتمتع مهندسون ومدراء المشاريع والحرفيون بالخبرة اللازمة للتعامل مع مشاريع ذات أي مقياس وتعقيد.',
-    imageLink: importImageByProcessEnv('service-1.png'),
-  },
-];
+import PageWrapper from '../../components/page-wrapper';
 
 const AboutUs = () => {
-  const [searchParams] = useSearchParams();
+  // const [searchParams] = useSearchParams();
   const { data, isLoading } = useCallApi<About>('/about');
-
-  useEffect(() => {
-    if (searchParams && searchParams.get('focused')) {
-      const targetSection = document.getElementById(
-        searchParams.get('focused')
-      );
-      if (targetSection) {
-        targetSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }
-    }
-  }, []);
-
+  //TODO :needed if we need to go to specific section
+  // useEffect(() => {
+  //   if (searchParams && searchParams.get('focused')) {
+  //     const targetSection = document.getElementById(
+  //       searchParams.get('focused')
+  //     );
+  //     if (targetSection) {
+  //       targetSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  //     }
+  //   }
+  // }, []);
   return (
-    <div>
+    <PageWrapper loading={isLoading}>
       <PagesHeader
         title={getValueByLang(data?.titleAboutUsAr, data?.titleAboutUsEn)}
         description={getValueByLang(
@@ -188,7 +160,7 @@ const AboutUs = () => {
           ))}
         </Container>
       </SectionsWrapper>
-    </div>
+    </PageWrapper>
   );
 };
 

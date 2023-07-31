@@ -1,6 +1,5 @@
 import { Col, Container, Row } from 'reactstrap';
 import {
-  PagesWrapper,
   SectionsTitle,
   SectionsWrapper,
   WebsiteCard,
@@ -9,7 +8,6 @@ import { BodySliderData } from '../../../models';
 import styles from '../index.module.scss';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../../constants';
-import { useCallApi } from '../../../hooks';
 import { getValueByLang } from '../../../utils';
 
 interface AboutSectionProps {
@@ -28,9 +26,9 @@ export const AboutSection = ({ aboutSection }: AboutSectionProps) => {
         />
         <div className={styles.aboutCardsWrapper}>
           <Row className='gy-4'>
-            {aboutSection?.aboutHome?.map((item) => (
+            {aboutSection?.aboutHome?.map(item => (
               <Col xl='4' lg='6' key={item.id}>
-                <Link to={ROUTES.aboutUs}>
+                <Link to={`${ROUTES.aboutUs}`}>
                   <WebsiteCard
                     hovered
                     iconLink={item.image}
