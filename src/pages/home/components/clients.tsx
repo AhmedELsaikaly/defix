@@ -2,14 +2,24 @@ import { Container } from 'reactstrap';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper';
 import { SectionsTitle, SectionsWrapper } from '../../../components';
-import { importImageByProcessEnv } from '../../../utils';
+import { getValueByLang, importImageByProcessEnv } from '../../../utils';
 import styles from '../index.module.scss';
+import { BodySliderData } from '../../../models';
 
-export const Clients = () => {
+interface ClintProps {
+  data: BodySliderData;
+}
+
+export const Clients = ({ data }: ClintProps) => {
   return (
     <SectionsWrapper id='clients' className={styles.clientsSectionWrapper}>
       <Container>
-        <SectionsTitle text='عملاؤنا' />
+        <SectionsTitle
+          text={getValueByLang(
+            data?.TitleOurClientsAr,
+            data?.TitleOurClientsEn
+          )}
+        />
         <div
           data-aos='fade-in'
           data-aos-delay='200'
@@ -42,126 +52,18 @@ export const Clients = () => {
             }}
             modules={[Autoplay, Pagination]}
           >
-            <SwiperSlide>
-              <div className={styles.clientItem}>
-                <img
-                  loading='lazy'
-                  className='img-full '
-                  src={importImageByProcessEnv('client-1.png')}
-                  alt='client1'
-                />
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className={styles.clientItem}>
-                <img
-                  loading='lazy'
-                  className='img-full '
-                  src={importImageByProcessEnv('client-1.png')}
-                  alt='client1'
-                />
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className={styles.clientItem}>
-                <img
-                  loading='lazy'
-                  className='img-full '
-                  src={importImageByProcessEnv('client-2.png')}
-                  alt='client1'
-                />
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className={styles.clientItem}>
-                <img
-                  loading='lazy'
-                  className='img-full '
-                  src={importImageByProcessEnv('client-3.png')}
-                  alt='client1'
-                />
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className={styles.clientItem}>
-                <img
-                  loading='lazy'
-                  className='img-full '
-                  src={importImageByProcessEnv('client-4.png')}
-                  alt='client1'
-                />
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className={styles.clientItem}>
-                <img
-                  loading='lazy'
-                  className='img-full '
-                  src={importImageByProcessEnv('client-5.png')}
-                  alt='client1'
-                />
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className={styles.clientItem}>
-                <img
-                  loading='lazy'
-                  className='img-full '
-                  src={importImageByProcessEnv('client-1.png')}
-                  alt='client1'
-                />
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className={styles.clientItem}>
-                <img
-                  loading='lazy'
-                  className='img-full '
-                  src={importImageByProcessEnv('client-1.png')}
-                  alt='client1'
-                />
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className={styles.clientItem}>
-                <img
-                  loading='lazy'
-                  className='img-full '
-                  src={importImageByProcessEnv('client-2.png')}
-                  alt='client1'
-                />
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className={styles.clientItem}>
-                <img
-                  loading='lazy'
-                  className='img-full '
-                  src={importImageByProcessEnv('client-3.png')}
-                  alt='client1'
-                />
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className={styles.clientItem}>
-                <img
-                  loading='lazy'
-                  className='img-full '
-                  src={importImageByProcessEnv('client-4.png')}
-                  alt='client1'
-                />
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className={styles.clientItem}>
-                <img
-                  loading='lazy'
-                  className='img-full '
-                  src={importImageByProcessEnv('client-5.png')}
-                  alt='client1'
-                />
-              </div>
-            </SwiperSlide>
+            {data?.clients?.map((item) => (
+              <SwiperSlide>
+                <div className={styles.clientItem} key={item?.id}>
+                  <img
+                    loading='lazy'
+                    className='img-full '
+                    src={item?.image}
+                    alt='client1'
+                  />
+                </div>
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
       </Container>

@@ -37,6 +37,10 @@ export interface FooterData {
 
 // models of body request
 export interface BodySliderData {
+  businesprojectsHome: BusinesprojectsHome[];
+  titleOurSayAboutUsAr: string,
+  titleOurSayAboutUsEn: string
+  achievement: Achievement[];
   TitleAboutUsAr: string;
   TitleAboutUsEr: string;
   TitleOurClientsAr: string;
@@ -231,4 +235,41 @@ export interface AboutCommitment {
   status: string;
   created_at: string;
   updated_at: string;
+}
+
+export interface Achievement {
+  id: number
+  title_ar: string
+  title_en: string
+  icon: string
+  value: number
+  is_plus: number
+  status: string
+  created_at: string
+  updated_at: string
+}
+
+export interface BusinesprojectsHome {
+  id: number
+  title_ar: string
+  title_en: string
+  status: string
+  created_at: string
+  updated_at: string
+  projects_home: ProjectsHome[]
+}
+
+export interface ProjectsHome {
+  id: number
+  title_ar: string
+  title_en: string
+  description_ar: string
+  description_en: string
+  master_image: string
+  sub_image_ar: string
+  sub_image_en: string
+  business_id: number
+  status: string
+  created_at: string
+  updated_at: string
 }

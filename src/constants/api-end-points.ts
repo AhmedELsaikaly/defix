@@ -3,5 +3,6 @@ export const apiEndPoints = {
   footer: '/footer',
   body: '/body',
   service: '/service',
-  about: '/about'
+  about: '/about',
+  constructions: '/constructions'
 } as const;

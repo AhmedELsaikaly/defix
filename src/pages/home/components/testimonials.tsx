@@ -3,9 +3,15 @@ import { QuotsIcon, SectionsTitle, SectionsWrapper } from '../../../components';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper';
 import styles from '../index.module.scss';
-import { importImageByProcessEnv } from '../../../utils';
+import { getValueByLang, importImageByProcessEnv } from '../../../utils';
+import { BodySliderData } from '../../../models';
 
-export const Testimonials = () => {
+interface TestimonialsProps {
+  data: BodySliderData
+}
+
+
+export const Testimonials = ({ data }: TestimonialsProps) => {
   const pagination = {
     clickable: true,
     renderBullet: function (index, className) {
@@ -19,11 +25,14 @@ export const Testimonials = () => {
           <Col lg='4'>
             <SectionsTitle
               className={styles.testimonialsTitle}
-              text='ماذا يقول عملاؤنا لنا'
+              text={
+                getValueByLang(data?.titleOurSayAboutUsAr, data?.titleOurSayAboutUsEn)
+              }
             />
             <p data-aos='fade-up' data-aos-delay='200'>
-              أجمل اللحظات هي اللحظات عندما نقوم بتسليم المشروع والذي غالبًا ما
-              يكون وراءه توقعات العميل
+              {
+                getValueByLang(data?.descriptionOurSayAboutUsAr, data?.descriptionOurSayAboutUsAr)
+              }
             </p>
           </Col>
           <Col lg='8'>
@@ -46,99 +55,45 @@ export const Testimonials = () => {
                 spaceBetween={15}
                 modules={[Autoplay, Pagination]}
               >
-                <SwiperSlide>
-                  <div className={styles.testimonialsCard}>
-                    <div className={styles.cardHead}>
-                      <div className={styles.authordesc}>
-                        <div className={styles.icon}>
-                          <QuotsIcon />
+
+                {
+                  data?.sayAboutUs?.map((item) => (
+                    <SwiperSlide>
+                      <div className={styles.testimonialsCard} key={item?.id}>
+                        <div className={styles.cardHead}>
+                          <div className={styles.authordesc}>
+                            <div className={styles.icon}>
+                              <QuotsIcon />
+                            </div>
+                            <div>
+                              <h5>{
+                                item?.name
+                              }</h5>
+                              <p>{item?.jop_name}</p>
+                            </div>
+                          </div>
+                          <div className={styles.authorImg}>
+                            <img
+                              loading='lazy'
+                              className='img-full img-bg'
+                              src={item?.image}
+                              alt='photo'
+                            />
+                          </div>
                         </div>
-                        <div>
-                          <h5>م. سائد النجار</h5>
-                          <p>المدير التشغيلي لشركة سكايلينا</p>
-                        </div>
-                      </div>
-                      <div className={styles.authorImg}>
-                        <img
-                          loading='lazy'
-                          className='img-full img-bg'
-                          src={importImageByProcessEnv('testim.png')}
-                          alt='م. سائد النجار'
-                          title='م. سائد النجار'
-                        />
-                      </div>
-                    </div>
-                    <div className={styles.cardContent}>
-                      <p>
-                        سعدت كثيرا بالتعامل مع شركة ديفكس لأعمال الصيانة ، لما
-                        قدموه من عمل ممتاز في المهام الموكلة إليهم والسرعة
-                        العالية في تنفيذها ولن يكون أخر تعامل
-                      </p>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className={styles.testimonialsCard}>
-                    <div className={styles.cardHead}>
-                      <div className={styles.authordesc}>
-                        <div className={styles.icon}>
-                          <QuotsIcon />
-                        </div>
-                        <div>
-                          <h5>م. سائد النجار</h5>
-                          <p>المدير التشغيلي لشركة سكايلينا</p>
+                        <div className={styles.cardContent}>
+                          <p>
+                            {
+                              item?.message
+                            }
+                          </p>
                         </div>
                       </div>
-                      <div className={styles.authorImg}>
-                        <img
-                          loading='lazy'
-                          className='img-full img-bg'
-                          src={importImageByProcessEnv('testim.png')}
-                          alt='م. سائد النجار'
-                          title='م. سائد النجار'
-                        />
-                      </div>
-                    </div>
-                    <div className={styles.cardContent}>
-                      <p>
-                        سعدت كثيرا بالتعامل مع شركة ديفكس لأعمال الصيانة ، لما
-                        قدموه من عمل ممتاز في المهام الموكلة إليهم والسرعة
-                        العالية في تنفيذها ولن يكون أخر تعامل
-                      </p>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className={styles.testimonialsCard}>
-                    <div className={styles.cardHead}>
-                      <div className={styles.authordesc}>
-                        <div className={styles.icon}>
-                          <QuotsIcon />
-                        </div>
-                        <div>
-                          <h5>م. سائد النجار</h5>
-                          <p>المدير التشغيلي لشركة سكايلينا</p>
-                        </div>
-                      </div>
-                      <div className={styles.authorImg}>
-                        <img
-                          loading='lazy'
-                          className='img-full img-bg'
-                          src={importImageByProcessEnv('testim.png')}
-                          alt='م. سائد النجار'
-                          title='م. سائد النجار'
-                        />
-                      </div>
-                    </div>
-                    <div className={styles.cardContent}>
-                      <p>
-                        سعدت كثيرا بالتعامل مع شركة ديفكس لأعمال الصيانة ، لما
-                        قدموه من عمل ممتاز في المهام الموكلة إليهم والسرعة
-                        العالية في تنفيذها ولن يكون أخر تعامل
-                      </p>
-                    </div>
-                  </div>
-                </SwiperSlide>
+                    </SwiperSlide>
+
+                  ))}
+
+
               </Swiper>
             </div>
           </Col>

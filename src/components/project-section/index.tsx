@@ -8,8 +8,22 @@ import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../constants';
 import styles from './index.module.scss';
 import Subtext from '../subtext';
+import { BodySliderData, BusinesprojectsHome, ProjectsHome } from '../../models';
+import { useEffect } from 'react';
 
-const ProjectsImagesComp = () => {
+interface ProjectsSectionProps {
+  withMoreBtn?: boolean;
+  title?: string;
+  subTitle?: string;
+  className?: string;
+  data?: BodySliderData
+
+}
+
+const ProjectsImagesComp = (imagData: any) => {
+
+  /*   console.log(imagData.map((item) => { item }), 'iiiiiiiiiiiiiiiiiii');
+   */
   return (
     <ProjectsImages
       images={[
@@ -23,19 +37,16 @@ const ProjectsImagesComp = () => {
   );
 };
 
-interface ProjectsSectionProps {
-  withMoreBtn?: boolean;
-  title?: string;
-  subTitle?: string;
-  className?: string;
-}
+
 
 const ProjectsSection = ({
   withMoreBtn = true,
   title,
   subTitle,
   className,
+  data
 }: ProjectsSectionProps) => {
+
   const navigate = useNavigate();
   return (
     <SectionsWrapper
@@ -51,7 +62,7 @@ const ProjectsSection = ({
           data-aos='fade-up'
           data-aos-delay='250'
         >
-          <ProjectsImagesComp />
+          <ProjectsImagesComp imagData={data?.businesprojectsHome} />
         </div>
         {withMoreBtn && (
           <div

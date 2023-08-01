@@ -8,12 +8,21 @@ import styles from './index.module.scss';
 import { useCallApi, useModalState } from '../../hooks';
 import { IServiceItem, IServiceDetails } from '../../models/services';
 
+interface TitleConstructions{
+  titleConstructionsAr: string
+  titleConstructionsEn: string
+  descriptionConstructionsAr: string
+  descriptionConstructionsEn: string
+  constructionsImage: string
+}
 const Service = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [modalData, setModalData] = useState<IServiceItem>();
   const { data, isLoading } = useCallApi<IServiceDetails>('/service');
+  const { data:constructions, isLoading:loadingConstructions } = useCallApi<TitleConstructions>('/constructions');
   const { isOpen, toggleModal, openModal } = useModalState();
   const [activeTab, setActiveTab] = useState<number>();
+console.log(constructions,'dataService');
 
   const handleSelectTab = (tabId: number) => {
     setActiveTab(tabId);
@@ -26,14 +35,20 @@ const Service = () => {
   };
 
   return (
-    <PageWrapper loading={isLoading}>
+    <PageWrapper loading={isLoading || loadingConstructions}>
       <ServicesHero
-        imgLink={importImageByProcessEnv('services-bg.png')}
-        title='خدمات الإنشاءات'
-        desc='خلافاَ للإعتقاد السائد فإن لوريم إيبسوم ليس نصاَ عشوائياً، بل إن له جذور في الأدب اللاتيني الكلاسيكي منذ العام 45 قبل الميلاد، مما يجعله أكثر من 2000 عام في القدم. قام البروفيسور "ريتشارد ماك لينتوك" (Richard McClintock) وهو بروفيسور اللغة اللاتينية في جامعة هامبدن-سيدني في فيرجينيا بالبحث عن أصول كلمة لاتينية غامضة في نص لوريم إيبسوم وهي "consectetur"، وخلال تتبعه لهذه الكلمة في الأدب اللاتيني اكتشف المصدر الغير قابل للشك. فلقد اتضح أن كلمات نص لوريم إيبسوم تأتي من الأقسام 1.10.32 و 1.10.33 من كتاب "حول أقاصي الخير والشر" (de Finibus Bonorum et Malorum) للمفكر شيشيرون (Cicero) والذي كتبه في عام 45 قبل الميلاد. هذا الكتاب هو بمثابة مقالة علمية مطولة في نظرية الأخلاق، وكان له شعبية كبيرة في عصر النهضة. السطر الأول من لوريم إيبسوم "Lorem ipsum dolor sit amet.." يأتي من سطر في القسم 1.20.32 من هذا الكتاب.
-
-للمهتمين قمنا بوضع نص لوريم إبسوم القياسي والمُستخدم منذ القرن الخامس عشر في الأسفل. وتم أيضاً توفير الأقسام 1.10.32 و 1.10.33 من "حول أقاصي الخير والشر" (de Finibus Bonorum et Malorum) لمؤلفه شيشيرون (Cicero) بصيغها الأصلية، مرفقة بالنسخ الإنكليزية لها والتي قام بترجمتها هـ.راكهام (H. Rackham) في عام 1914.'
-      />
+        imgLink={constructions?.constructionsImage}
+        title={getValueByLang(
+          constructions?.titleConstructionsAr,
+          constructions?.titleConstructionsEn
+        )}
+        desc={
+          getValueByLang(
+            constructions?.descriptionConstructionsAr,
+            constructions?.descriptionConstructionsEn
+          )
+        }
+        />
 
       <Services
         withDetailsBtn

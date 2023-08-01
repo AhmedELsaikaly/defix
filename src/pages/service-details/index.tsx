@@ -4,6 +4,8 @@ import {
   PagesHeader,
   SectionsTitle,
 } from '../../components';
+import { useCallApi } from '../../hooks';
+import { BodySliderData } from '../../models';
 import { importImageByProcessEnv } from '../../utils';
 import styles from './index.module.scss';
 
@@ -35,6 +37,8 @@ const services = [
 ];
 
 const ServiceDetails = () => {
+/*   const { data, isLoading } = useCallApi<BodySliderData>('/service');
+ */
   return (
     <div>
       <PagesHeader

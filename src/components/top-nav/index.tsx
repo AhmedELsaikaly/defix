@@ -28,7 +28,6 @@ const TopNav = ({ headerData }: TopNavProps) => {
                 href={`https://api.whatsapp.com/send/?phone=${headerData?.whatsApp}`}
                 target='_blank'
               >
-                <span className={styles.text}>{headerData?.whatsApp}</span>
                 <span>
                   <WhatsappIcon />
                 </span>
@@ -36,7 +35,6 @@ const TopNav = ({ headerData }: TopNavProps) => {
             </li>
             <li>
               <a href={`mailto:${headerData?.email}`} target='_blank'>
-                <span className={styles.text}>{headerData?.email}</span>
                 <span>
                   <MailIcon />
                 </span>

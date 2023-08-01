@@ -9,6 +9,7 @@ import {
 } from './components';
 import { BodySliderData } from '../../models';
 import { useState, useEffect } from 'react';
+import { getValueByLang } from '../../utils';
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState<number>();
@@ -37,13 +38,14 @@ const Home = () => {
             descriptionOurServicesEn: data?.descriptionOurServicesEn,
           }}
         />
-        <Statistics />
+        <Statistics data={data} />
         <ProjectsSection
-          title='مشاريعنا'
-          subTitle='تقدم شركة ديفكس خدمات احترافية وتلبية احتياجات سوق العمل في مختلف التخصصات'
+          title={getValueByLang(data?.TitleOurProjectsAr, data?.TitleOurProjectsEn)}
+          subTitle={getValueByLang(data?.descriptionOurProjectsAr, data?.descriptionOurProjectsEn)}
+          data={data}
         />
-        <Clients />
-        <Testimonials />
+        <Clients data={data} />
+        <Testimonials data={data} />
       </PagesWrapper>
     </div>
   );
