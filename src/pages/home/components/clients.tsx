@@ -52,9 +52,9 @@ export const Clients = ({ data }: ClintProps) => {
             }}
             modules={[Autoplay, Pagination]}
           >
-            {data?.clients?.map((item) => (
-              <SwiperSlide>
-                <div className={styles.clientItem} key={item?.id}>
+            {data?.clients?.map(item => (
+              <SwiperSlide key={item?.id}>
+                <div className={styles.clientItem}>
                   <img
                     loading='lazy'
                     className='img-full '

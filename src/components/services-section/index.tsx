@@ -5,7 +5,7 @@ import SectionsTitle from '../sections-title';
 import Tabs from '../tabs';
 import Button from '../button';
 import { useNavigate } from 'react-router-dom';
-import { ROUTES } from '../../constants';
+import { ROUTES, manualTranslatedItems } from '../../constants';
 import Subtext from '../subtext';
 import { getValueByLang } from '../../utils';
 import { IServiceItem, IServiceSectionData } from '../../models/services';
@@ -99,7 +99,9 @@ const Services = ({
                   <ServiceCards
                     withDetailsBtn={withDetailsBtn}
                     onDetailsBtnClick={onDetailsBtnClick}
-                    servicesDataList={item.services_home}
+                    servicesDataList={
+                      (item.services_home || item.services) ?? []
+                    }
                   />
                 ),
               })) ?? []
@@ -120,7 +122,10 @@ const Services = ({
               type='primary'
               fullRadius
             >
-              المزيد
+              {getValueByLang(
+                manualTranslatedItems?.showMore?.ar,
+                manualTranslatedItems?.showMore?.en
+              )}
             </Button>
           </div>
         )}

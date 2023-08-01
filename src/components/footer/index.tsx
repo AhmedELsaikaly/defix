@@ -5,6 +5,8 @@ import { getValueByLang, importImageByProcessEnv } from '../../utils';
 import { InstaIcon, SnapShatIcon, TwitterIcon } from '../icons';
 import { BiLang } from '../../components';
 import { FooterData } from '../../models';
+import Home from './../../pages/home/index';
+import { ROUTES } from '../../constants';
 interface FooterDataProps {
   footerData: FooterData;
 }
@@ -15,14 +17,16 @@ const Footer = ({ footerData }: FooterDataProps) => {
       <Container>
         <div className={styles.footerInnerWrapper}>
           <div className={styles.startFooterSection}>
-            <Link to='#' className={styles.footerLogo}>
+            <Link to={ROUTES.home} className={styles.footerLogo}>
               <img
                 width={145}
                 height={45}
                 className='img-full'
-                alt='ديفكس'
-                title='ديفكس'
-                src={getValueByLang(footerData?.logoAr, footerData?.logoEn)}
+                alt={getValueByLang(footerData?.footerAr, footerData?.footerEn)}
+                src={getValueByLang(
+                  footerData?.darkLogoAr,
+                  footerData?.darkLogoEn
+                )}
               />
             </Link>
             <p>
@@ -42,7 +46,7 @@ const Footer = ({ footerData }: FooterDataProps) => {
               <li>
                 <a
                   href={`${footerData?.snapChat}`}
-                  title='تابع ديفكس عبر سنابشات'
+                  // title='تابع ديفكس عبر سنابشات'
                 >
                   <SnapShatIcon />
                 </a>
@@ -50,7 +54,7 @@ const Footer = ({ footerData }: FooterDataProps) => {
               <li>
                 <a
                   href={`${footerData?.twitter}`}
-                  title='تابع ديفكس عبر انستقرام'
+                  // title='تابع ديفكس عبر انستقرام'
                 >
                   <InstaIcon />
                 </a>

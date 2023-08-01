@@ -1,8 +1,5 @@
 import { useState, useEffect } from 'react';
-import { apiEndPoints } from './../constants/api-end-points';
-
-type Keys = keyof typeof apiEndPoints;
-type ApiEndPointsValues = (typeof apiEndPoints)[Keys];
+import { ApiEndPointsValues } from '../models';
 
 export function useCallApi<TResponse>(apiEndPoint: ApiEndPointsValues) {
   const [isLoading, setIsLoading] = useState<boolean>();

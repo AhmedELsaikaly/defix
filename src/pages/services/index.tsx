@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { DetailsModal, ProjectsSection, Services } from '../../components';
 import PageWrapper from '../../components/page-wrapper';
@@ -8,21 +8,27 @@ import styles from './index.module.scss';
 import { useCallApi, useModalState } from '../../hooks';
 import { IServiceItem, IServiceDetails } from '../../models/services';
 
-interface TitleConstructions{
-  titleConstructionsAr: string
-  titleConstructionsEn: string
-  descriptionConstructionsAr: string
-  descriptionConstructionsEn: string
-  constructionsImage: string
+interface TitleConstructions {
+  titleConstructionsAr: string;
+  titleConstructionsEn: string;
+  descriptionConstructionsAr: string;
+  descriptionConstructionsEn: string;
+  constructionsImage: string;
 }
 const Service = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [modalData, setModalData] = useState<IServiceItem>();
   const { data, isLoading } = useCallApi<IServiceDetails>('/service');
-  const { data:constructions, isLoading:loadingConstructions } = useCallApi<TitleConstructions>('/constructions');
+  const { data: constructions, isLoading: loadingConstructions } =
+    useCallApi<TitleConstructions>('/constructions');
   const { isOpen, toggleModal, openModal } = useModalState();
   const [activeTab, setActiveTab] = useState<number>();
-console.log(constructions,'dataService');
+
+  useEffect(() => {
+    if (searchParams.get('selectedTab')) {
+      setActiveTab(parseInt(searchParams.get('selectedTab')));
+    }
+  }, []);
 
   const handleSelectTab = (tabId: number) => {
     setActiveTab(tabId);
@@ -36,19 +42,19 @@ console.log(constructions,'dataService');
 
   return (
     <PageWrapper loading={isLoading || loadingConstructions}>
-      <ServicesHero
-        imgLink={constructions?.constructionsImage}
-        title={getValueByLang(
-          constructions?.titleConstructionsAr,
-          constructions?.titleConstructionsEn
-        )}
-        desc={
-          getValueByLang(
+      {activeTab === 1 && (
+        <ServicesHero
+          imgLink={constructions?.constructionsImage}
+          title={getValueByLang(
+            constructions?.titleConstructionsAr,
+            constructions?.titleConstructionsEn
+          )}
+          desc={getValueByLang(
             constructions?.descriptionConstructionsAr,
             constructions?.descriptionConstructionsEn
-          )
-        }
+          )}
         />
+      )}
 
       <Services
         withDetailsBtn
@@ -64,17 +70,17 @@ console.log(constructions,'dataService');
         selectedTab={activeTab}
         onDetailsBtnClick={handleMoreBtnClick}
       />
-      <>
+      {/* <>
         <h2
           data-aos='fade-up'
           data-aos-delay='150'
           className={styles.projectTitle}
         >
-          الإطلاع على مشاريعنا
+           على مشاريعنا
         </h2>
 
         <ProjectsSection className={styles.projectsSectionWrap} />
-      </>
+      </> */}
 
       <DetailsModal
         onClosed={() => setModalData(undefined)}

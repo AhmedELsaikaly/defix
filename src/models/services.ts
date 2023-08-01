@@ -13,7 +13,8 @@ export interface IService {
   status: string;
   created_at: string;
   updated_at: string;
-  services_home: IServiceItem[];
+  services_home?: IServiceItem[];
+  services?: IServiceItem[];
 }
 
 export interface IServiceItem {

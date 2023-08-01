@@ -4,5 +4,6 @@ export const apiEndPoints = {
   body: '/body',
   service: '/service',
   about: '/about',
-  constructions: '/constructions'
+  constructions: '/constructions',
+  project: '/project',
 } as const;

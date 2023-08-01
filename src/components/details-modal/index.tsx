@@ -1,12 +1,13 @@
 import { Col, Modal, ModalBody, ModalHeader, Row } from 'reactstrap';
-import styles from './index.module.scss';
 import { CloseIcon } from '../icons';
+import styles from './index.module.scss';
 
 interface IModalData {
   title: string;
   desc: string;
   imgLink: string;
   iconLink?: string;
+  subImageLink?: string;
 }
 
 interface DetailsModalProps {
@@ -56,7 +57,20 @@ const DetailsModal = ({
 
                 <span>{data?.title}</span>
               </h2>
-              <p>{data?.desc}</p>
+              <Row>
+                <Col lg='11'>
+                  <p>{data?.desc}</p>
+                  {data?.subImageLink && (
+                    <div className={styles.subImageWrapper}>
+                      <img
+                        className='img-full'
+                        alt={data?.title}
+                        src={data?.subImageLink}
+                      />
+                    </div>
+                  )}
+                </Col>
+              </Row>
             </div>
           </Col>
           <Col lg='6'>

@@ -9,7 +9,7 @@ interface ServicesHeroProps {
 export const ServicesHero = ({ title, imgLink, desc }: ServicesHeroProps) => {
   return (
     <div
-      className={`${styles.servicesHero} img-cover`}
+      className={`${styles.servicesHero} bg-cover`}
       style={{ backgroundImage: `url(${imgLink})` }}
     >
       <Container>

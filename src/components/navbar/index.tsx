@@ -46,6 +46,7 @@ const Navbar = ({ isWhiteBg = false, navBarData }: NavbarProps) => {
         </Container>
       </nav>
       <SideMenu
+        data={navBarData}
         opened={isSideMenuOpened}
         setSideMenuOpen={(status: boolean) => setIsSideMenuOpened(status)}
       />

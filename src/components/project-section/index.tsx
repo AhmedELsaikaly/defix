@@ -1,53 +1,43 @@
 import { Container } from 'reactstrap';
 import ProjectsImages from '../projects-images';
-import { importImageByProcessEnv } from '../../utils';
+import { getValueByLang } from '../../utils';
 import SectionsWrapper from '../sections-wrapper';
 import SectionsTitle from '../sections-title';
 import Button from '../button';
 import { useNavigate } from 'react-router-dom';
-import { ROUTES } from '../../constants';
+import { ROUTES, manualTranslatedItems } from '../../constants';
 import styles from './index.module.scss';
 import Subtext from '../subtext';
-import { BodySliderData, BusinesprojectsHome, ProjectsHome } from '../../models';
-import { useEffect } from 'react';
+import { BodySliderData, ProjectsHome } from '../../models';
+import Tabs from '../tabs';
+import { useEffect, useState } from 'react';
 
 interface ProjectsSectionProps {
   withMoreBtn?: boolean;
   title?: string;
   subTitle?: string;
   className?: string;
-  data?: BodySliderData
-
+  data?: BodySliderData;
 }
 
-const ProjectsImagesComp = (imagData: any) => {
-
-  /*   console.log(imagData.map((item) => { item }), 'iiiiiiiiiiiiiiiiiii');
-   */
-  return (
-    <ProjectsImages
-      images={[
-        importImageByProcessEnv('1.png'),
-        importImageByProcessEnv('2.png'),
-        importImageByProcessEnv('3.png'),
-        importImageByProcessEnv('4.png'),
-        importImageByProcessEnv('5.png'),
-      ]}
-    />
-  );
+const ProjectsImagesComp = ({ imagData }: { imagData: ProjectsHome[] }) => {
+  return <ProjectsImages images={imagData?.map(item => item?.master_image)} />;
 };
-
-
 
 const ProjectsSection = ({
   withMoreBtn = true,
   title,
   subTitle,
   className,
-  data
+  data,
 }: ProjectsSectionProps) => {
-
+  const [activeTab, setActiveTab] = useState<number>();
   const navigate = useNavigate();
+  useEffect(() => {
+    if (data) {
+      setActiveTab(data?.businesprojectsHome?.[0]?.id ?? 1);
+    }
+  }, [data]);
   return (
     <SectionsWrapper
       id='projects'
@@ -62,7 +52,19 @@ const ProjectsSection = ({
           data-aos='fade-up'
           data-aos-delay='250'
         >
-          <ProjectsImagesComp imagData={data?.businesprojectsHome} />
+          <Tabs
+            activeTab={activeTab}
+            setSelectedTab={setActiveTab}
+            tabs={
+              data?.businesprojectsHome?.map(item => ({
+                id: item.id,
+                name: getValueByLang(item.title_ar, item.title_en),
+                content: (
+                  <ProjectsImagesComp imagData={item?.projects_home ?? []} />
+                ),
+              })) ?? []
+            }
+          />
         </div>
         {withMoreBtn && (
           <div
@@ -71,12 +73,15 @@ const ProjectsSection = ({
             data-aos-delay='200'
           >
             <Button
-              onClick={() => navigate(ROUTES.projects)}
+              onClick={() => navigate(`${ROUTES.projects}/${activeTab}`)}
               whiteText
               type='primary'
               fullRadius
             >
-              المزيد
+              {getValueByLang(
+                manualTranslatedItems?.showMore?.ar,
+                manualTranslatedItems?.showMore?.en
+              )}
             </Button>
           </div>
         )}

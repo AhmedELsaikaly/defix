@@ -1,13 +1,14 @@
-import { MouseEvent, useState } from 'react';
-import { Link, useMatch, useNavigate } from 'react-router-dom';
+import { MouseEvent, useContext, useEffect } from 'react';
+import { Link, useLocation, useMatch, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../constants';
-import { getValueByLang, importImageByProcessEnv } from '../../utils';
+import { getValueByLang } from '../../utils';
 import Button from '../button';
 import styles from './index.module.scss';
 import { Menu } from '../icons';
 import ChangeLanguage from '../change-language';
 import { HeaderData } from '../../models';
 import BiLang from '../bi-lang-comp';
+import { NavbarContext } from '../../contexts/navbar-context';
 
 interface NavLinksListProps {
   isSideMenu?: boolean;
@@ -25,14 +26,6 @@ export const NavLinksList = ({
   data,
   isWhiteBg = false,
 }: NavLinksListProps) => {
-  const match = useMatch(ROUTES.home);
-  const navigate = useNavigate();
-
-  const closeSideMenu = () => {
-    if (setSideMenuOpen) {
-      setSideMenuOpen(false);
-    }
-  };
   const navLinks = [
     {
       nameAr: data?.TitleHomeAr,
@@ -42,7 +35,7 @@ export const NavLinksList = ({
     {
       nameAr: data?.TitleAboutUsAr,
       nameEn: data?.TitleAboutUsEn,
-      targetSection: 'about',
+      targetSection: 'about-us',
     },
     {
       nameAr: data?.TitleOurServicesAr,
@@ -65,20 +58,30 @@ export const NavLinksList = ({
       targetSection: 'achievement',
     },
   ];
+  const location = useLocation();
+  const match = useMatch(ROUTES.home);
+  const navigate = useNavigate();
+  const { activeLinkItem, setActiveLinkItem } = useContext(NavbarContext);
 
-  const [activeLinkItem, setActiveLinkItem] = useState<string>('home');
+  const closeSideMenu = () => {
+    if (setSideMenuOpen) {
+      setSideMenuOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (location?.pathname && !match) {
+      const activeSection = location?.pathname?.split('/')?.[1];
+      setActiveLinkItem(!!activeSection ? activeSection : 'home');
+    }
+  }, [location]);
+
   const handleNavLinkClick = (event: MouseEvent, targetSectionId: string) => {
     event.preventDefault();
-    setActiveLinkItem(targetSectionId);
-
-    const targetSection = document.getElementById(targetSectionId);
-    if (!match) {
-      navigate(ROUTES.home);
+    if (targetSectionId !== activeLinkItem) {
+      navigate(`${ROUTES.home}?focusedSection=${targetSectionId}`);
     }
-    if (targetSection) {
-      targetSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); // Scroll to the target section
-      closeSideMenu();
-    }
+    closeSideMenu();
   };
 
   return (
@@ -108,7 +111,7 @@ export const NavLinksList = ({
           <li key={navLinkItem.targetSection}>
             <Link
               onClick={e => handleNavLinkClick(e, navLinkItem.targetSection)}
-              to={`#${navLinkItem.targetSection}`}
+              to={'#'}
               className={`${
                 activeLinkItem === navLinkItem.targetSection
                   ? styles.active

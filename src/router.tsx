@@ -35,7 +35,7 @@ const routes: RouteObject[] = [
     element: <ServiceDetails />,
   },
   {
-    path: ROUTES.projects,
+    path: `${ROUTES.projects}/:id`,
     element: <Projects />,
   },
 

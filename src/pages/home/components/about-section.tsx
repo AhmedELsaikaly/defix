@@ -16,7 +16,7 @@ interface AboutSectionProps {
 
 export const AboutSection = ({ aboutSection }: AboutSectionProps) => {
   return (
-    <SectionsWrapper id='about'>
+    <SectionsWrapper id='about-us'>
       <Container>
         <SectionsTitle
           text={getValueByLang(

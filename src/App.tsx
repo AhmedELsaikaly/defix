@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import AOS from 'aos';
 import { useLocation, useMatch, useRoutes } from 'react-router-dom';
 import routes from './router';
@@ -8,6 +8,7 @@ import { ROUTES } from './constants';
 import './styles/app.scss';
 import 'swiper/css/pagination';
 import { FooterData, HeaderData } from './models';
+import NavbarContextProvider from './contexts/navbar-context';
 
 function App() {
   const content = useRoutes(routes);
@@ -19,7 +20,7 @@ function App() {
     useCallApi<FooterData>('/footer');
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
   }, [location]);
 
   useEffect(() => {
@@ -38,15 +39,17 @@ function App() {
 
   return (
     <div className='App'>
-      <PagesWrapper loading={isLoading || footerLoading}>
-        <div>
-          <TopNav headerData={headerData} />
-          <Navbar isWhiteBg={!match} navBarData={headerData} />
-        </div>
+      <NavbarContextProvider>
+        <PagesWrapper loading={isLoading || footerLoading}>
+          <div>
+            <TopNav headerData={headerData} />
+            <Navbar isWhiteBg={!match} navBarData={headerData} />
+          </div>
 
-        {content}
-        <Footer footerData={footerData} />
-      </PagesWrapper>
+          {content}
+          <Footer footerData={footerData} />
+        </PagesWrapper>
+      </NavbarContextProvider>
     </div>
   );
 }

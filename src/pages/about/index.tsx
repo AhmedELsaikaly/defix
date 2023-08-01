@@ -16,16 +16,7 @@ const AboutUs = () => {
   // const [searchParams] = useSearchParams();
   const { data, isLoading } = useCallApi<About>('/about');
   //TODO :needed if we need to go to specific section
-  // useEffect(() => {
-  //   if (searchParams && searchParams.get('focused')) {
-  //     const targetSection = document.getElementById(
-  //       searchParams.get('focused')
-  //     );
-  //     if (targetSection) {
-  //       targetSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  //     }
-  //   }
-  // }, []);
+
   return (
     <PageWrapper loading={isLoading}>
       <PagesHeader
